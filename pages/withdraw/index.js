@@ -65,7 +65,7 @@ Page({
     this.setData({
       Verifyflag: app.globalData.Verifyflag
     })
-    console.log(this.data.Verifyflag, 'Verifyflag');
+    //console.log(this.data.Verifyflag, 'Verifyflag');
   },
   onLoad(query) {
     this.funVerifyflag()
