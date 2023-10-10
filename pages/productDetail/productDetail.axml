@@ -1,0 +1,53 @@
+<view class="page">
+  <image mode="widthFix" src="{{current == 0?baseInfo.pic:itemContent.sku_pic}}" class="image" />
+  <view class="middle-detail">
+    <view class="product-title">
+      {{baseInfo.title}}
+    </view>
+    <view class="product-price">
+      <view>
+        <text class="first-price">
+          ¥
+          <text style="font-size:20px">{{current == 0?defaultPrice:itemContent.price}}</text>
+        </text>
+        <text class="second-price">
+          券后¥
+          <text style="font-size:20px">{{current == 0?defaultPrice:itemContent.price}}</text>起
+        </text>
+      </view>
+
+      <!-- <view class="third-num">已售899件</view> -->
+    </view>
+    <view class="specifications">
+      <view class="guige">规格</view>
+      <view class="sku">
+        <view class="sku-one" a:for="{{ skuList }}">
+          <image mode="widthFix" src="{{item.sku_pic}}" />
+          <text class="{{index == current ? 'active' : 'aku-num'}}" data-index="{{index}}" data-item="{{item}}" onTap="onCheckSku">{{item.name}}</text>
+          <text class="inventory-num">库存{{item.reserve}}件</text>
+        </view>
+      </view>
+    </view>
+    <view class="service">
+      <text>服务</text>
+      <text>7天无理由退换，包邮</text>
+    </view>
+   </view>
+  <view class="detail-image">
+    <text>宝贝详情</text>
+    <view a:for="{{ detailsArr }}">
+      <image mode="widthFix" src="{{item.url}}" />
+    </view>
+   
+  </view>
+  <view style="height:118rpx">
+    
+  </view>
+  <view class="bottem-bar">
+    <view class="go-place-btn" onTap="goBuyChange">
+      去下单(
+      <text style="font-size:20rpx">券后¥</text>
+      <text style="font-size: 30rpx;">{{current == 0?defaultPrice:itemContent.price}}</text>)
+    </view>
+  </view>
+</view>

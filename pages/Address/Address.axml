@@ -1,0 +1,50 @@
+<view class="page">
+  <view class="content">
+    <view class="adress">
+      <text>收货地址</text>
+      <button size="default" onTap="onAdressList" class="adress-btn">获取收货地址</button>
+    </view>
+    <view class="adress-list">
+      <text class="name">
+          {{
+          result.fullname}}
+        </text>
+        <text>{{result.mobilePhone}}</text>
+      
+      <view>
+        {{result.address}}
+      </view>
+     <view a:if={{result == null}} class="add-adress">请添加收货地址</view>
+
+    </view>
+
+  </view>
+
+  <view class="product-detail">
+    <view class="product-image">
+      <image mode="widthFix" src="{{skus.sku_pic ?skus.sku_pic :defaultSku.sku_pic}}" />
+    </view>
+
+
+    <view class="detail-two">
+      <text class="title">{{itemContent.title}}</text>
+      <view class="sub-title">{{skus.name ?skus.name:defaultSku.name}}</view>
+      <view class="product-num">
+        <button size="mini" onTap="onJianNum">-</button>
+        <text class="count">
+          {{count}}</text>
+        <button size="mini" onTap="onAddNum">+</button>
+
+      </view>
+
+    </view>
+  </view>
+  <view class="price">
+    支付金额：
+    <text class="price-num">¥{{changeprice ?changeprice :defaultSku.price}}</text>
+  </view>
+
+  <view class="bottom-bar" onTap="goToPay">
+    去付款
+  </view>
+</view>

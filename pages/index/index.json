@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "fanlilist":"../components/index/fanli/fanli",
+    "fanli-bottom-list":"../components/index/fanli-bottom-list/fanli",
+    "dialog":"../components/dialog/dialog"
+   },
+  "styleIsolation": "apply-shared",
+  "onReachBottomDistance": 50,
+   "titleBarColor": ""
+}

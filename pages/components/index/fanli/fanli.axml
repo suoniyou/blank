@@ -1,0 +1,112 @@
+<view a:if="{{ goodlist.pict_url }}" class="goods-top-item" onTap="goodsClick">
+  <view class="left">
+    <image mode="widthFix" src={{goodlist.pict_url}} class="img" />
+  </view>
+  <view class="right">
+    <view class="name">
+      {{goodlist.title}}
+    </view>
+    <view class="shopname">
+      <view class="shopimg">
+        <image
+          a:if="{{ goodlist.user_type == 0 }}"
+          mode="widthFix"
+          src="../../../../images/taobao.svg"
+          style="width:90%"
+        />
+        <image
+          a:if="{{ goodlist.user_type == 1 }}"
+          mode="widthFix"
+          src="../../../../images/tianmao.svg"
+          style="width:90%"
+        />
+      </view>
+      <view class="shoptitle">
+        {{goodlist.shop_title}}
+      </view>
+
+    </view>
+    <view class="price-content">
+      <view class="zimai">
+        <view class="zimai-left">
+          <view class="price-left">
+            <view a:if="{{ goodlist.coupon_amount != 0 }}" class="lingquan">
+              {{goodlist.coupon_amount}}元券
+            </view>
+          </view>
+          <view class="price-top">
+            <text class="lifan-left">返</text>
+            <text class="lifan-right">¥{{goodlist.estimate_fan}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="present-price">
+      <view>
+        <text class="yuanjia"> ¥{{goodlist.user_pay_price}}</text>
+        <text class="original-price">
+          ¥{{goodlist.reserve_price}}
+        </text>
+      </view>
+
+      <view class="goumai">
+        立即购买
+      </view>
+    </view>
+  </view>
+</view>
+<form a:else onSubmit="onSubmit" report-submit="{{true}}">
+
+  <view class="goods-top-item" data-ids="{{goodlist.id}}" onTap="goodsClicks">
+
+    <view class="left">
+      <image mode="widthFix" src={{goodlist.product_img}} class="img" />
+    </view>
+    <view class="right">
+      <text class="name">
+        {{goodlist.product_name}}
+      </text>
+
+
+      <view class="price-content1">
+        <!--<view  class="likegoumai"><view class="price0pink"><text>付¥<text style="font-size:32rpx">{{goodlist.product_price}}</text></text><text class="price1">返¥<text style="font-size:32rpx">{{goodlist.product_fan}}</text></text></view><view class="buy-now"><image mode="widthFix" src="../../../../images/lijigm.png" /><text class="buy-btn">立即购买</text></view></view> -->
+        <view class="zimai">
+          <view class="zimai-left">
+            <view class="price-left">
+              <view class="lingquan">
+                {{goodlist.coupon_amount}}元券
+              </view>
+            </view>
+            <view class="price-top">
+              <text class="lifan-left">返</text>
+              <text class="lifan-right">¥{{goodlist.product_fan}}</text>
+            </view>
+          </view>
+
+        </view>
+        <view class="present-price1">
+          <view>
+            <text class="yuanjia"> ¥{{goodlist.product_price}}</text>
+            <text class="original-price">
+              ¥{{goodlist.product_price_origin}}
+            </text>
+          </view>
+
+          <view class="goumai">
+            立即购买
+            <button size="default" type="primary"  formType="submit" class="hiddenbtn">
+            </button>
+           
+          </view>
+
+
+        </view>
+
+
+
+      </view>
+
+    </view>
+
+  </view>
+</form>

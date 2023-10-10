@@ -1,0 +1,232 @@
+.goods-top-item {
+  display: flex;
+  height: 29vw;
+  background: #fff;
+  border-radius: 3.2vw;
+  margin: 2.133vw auto 0;
+  padding: 2.133vw 0;
+
+}
+
+.left {
+  padding-left: 14rpx;
+}
+
+.left .img {
+  width: 28vw;
+  height: 28vw;
+  border-radius: 2.133vw;
+}
+
+.right {
+  /* width: 59vw; */
+  /* display: flex;
+  flex-direction: column; */
+  margin-left: 2.133vw;
+}
+
+.name {
+  width: 59vw;
+  height: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 3.733vw;
+  font-weight: bold;
+  color: #1A1A1A;
+}
+
+.shopname {
+  display: flex;
+  flex-direction: row;
+  font-size: 24rpx;
+  color: #B2B2B2;
+  margin-bottom:10px;
+}
+
+.shopimg {
+  width: 10%;
+}
+
+.shoptitle {
+  text-align: left;
+  line-height: 23px;
+}
+
+.lingquan {
+  height: 26rpx;
+  line-height: 26rpx;
+  border: 1px solid #FFCFC8;
+  border-radius:10rpx;
+  color: #FF3212; 
+  font-size: 22rpx;
+  text-align: center;
+  padding:4rpx 6rpx;
+  margin-right:6px;
+  /* line-height: 76rpx; */
+}
+.likegoumai{
+  background: #FFEBE7;
+  width: 100%;
+  height: 38px;
+  line-height: 38px;
+  border-radius: 40rpx;
+  display: inline-flex;
+  justify-content: space-between;
+}
+.price0pink{
+  color: #FF3212;
+  font-size: 24rpx;
+  padding-left: 24rpx;
+
+}
+.buy-now{
+  width: 40%;
+  /* background: url('../../../../images//lijigm.png')no-repeat; */
+  color: #fff;
+  font-size: 24rpx;
+  position: relative;
+}
+.buy-now image{
+  width: 100%;
+}
+.buy-btn{
+  color:#fff;
+  position: absolute;
+  left: 25px;
+  top: 0px;
+}
+.price1{
+  margin-left: 10px;
+}
+
+
+.price-content .zimai {
+  /* margin-top: 12rpx; */
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.zimai-left{
+  display: flex;
+}
+.price-content {
+  /* height: 28px; */
+
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+.price-content1 {
+  height: 28px;
+  margin-top: 12px;
+  line-height: 30px;
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+
+.price-left {
+  /* display: inline-flex; */
+  height: 17px;
+  font-size: 20rpx;
+  line-height: 17px;
+
+}
+
+.price-top {
+  font-size: 22rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #FFCFC8;
+  border-radius: 10rpx;
+  /* margin-left: 12rpx; */
+  height: 38rpx;
+  display: inline-flex;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+
+
+.lifan-left {
+  padding: 2rpx 8rpx;
+  background: #FE372B;
+  color: #fff;
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+
+}
+.goumai{
+width: 68px;
+height: 26px;
+text-align: center;
+background: #FFE100;
+line-height: 26px;
+border-radius: 40px;
+font-size: 26rpx;
+padding: 3px 6px;
+font-weight: 600;
+/* margin-left: 30px; */
+color: #1A1A1A;
+position: relative;
+}
+
+.lifan-right {
+  padding: 2rpx 14rpx;
+  color: #FE372B;
+}
+
+.present-price {
+  color: #FE372B;
+  /* line-height: 56rpx; */
+  font-weight: 700;
+  padding-bottom: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  line-height: 30px;
+
+}
+.present-price1{
+  color: #FE372B;
+  /* margin-top: 12px; */
+  font-weight: 700;
+  padding-bottom: 10rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.yuanjia {
+  font-size: 32rpx;
+}
+
+.original-price {
+  font-weight: 400;
+  color: #B2B2B2;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
+
+
+
+.price-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 21.6vw;
+}
+
+.purchase-btn {
+  width: 21.6vw;
+  height: 10.667vw;
+}
+.hiddenbtn{
+  width: 68px;
+  position: absolute;
+  right: 10rpx;
+  bottom: 0;
+  opacity: 0;
+}

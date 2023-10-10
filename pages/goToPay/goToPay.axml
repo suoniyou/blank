@@ -1,0 +1,25 @@
+<view>
+  <view class="gopay">
+    <text class="amount">¥{{productPrice}}\n</text>
+    <text>{{productTitle}}</text>
+    <!-- <text class="paytime">
+      付款剩余时间
+      <text style="color:#FF3212">00:{{timer}}:00</text>
+    </text> -->
+    <view class="paymethod">
+      <!-- <text class="methods">支付方式</text> -->
+      <view>
+        <radio-group class="radio-group" onChange="radioChange" name="lib">
+          <label a:for="{{payRadio}}" class="radio">
+            <radio value="{{item.name}}" checked="{{item.checked}}" color=“rgba(0,0,0,0)” />
+            <text class="radio-text">{{item.value}}<text a:if="{{ item.value == '账户余额' }}">(¥12)</text></text>
+          </label>
+
+        </radio-group>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-bar" onTap="goToPay">
+    确认付款
+  </view>
+</view>

@@ -1,0 +1,5 @@
+{
+  "usingComponents": { "dialog":"../components/dialog/dialog",
+    "captcha4": "plugin://captcha4/captcha4"},
+  "styleIsolation": "apply-shared"
+}

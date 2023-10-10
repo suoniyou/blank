@@ -1,0 +1,193 @@
+<view>
+  <scroll-view
+    scroll-y="{{true}}"
+    style="width:100%;height:100vh;"
+    enable-back-to-top="true"
+    onScrollToLower="lower"
+  >
+    <view class="top">
+
+    </view>
+    <view class="header">
+      <view class="search-input">
+        <view class="search-outer">
+          <input
+            placeholder-class="placeholder-input"
+            class="search-input"
+            placeholder="淘宝天猫99%的商品都能省"
+            value="{{search}}"
+            onConfirm="clearSearch"
+            onInput="handleSearch"
+          />
+          <view class="closefanwei" onTap="clearSearch11" >
+            <icon type="clear" size="22" class="clearicon" />
+          </view>
+          <icon type="search" aria-label="search" size="18" class="search-icon" />
+        
+          <view class="search-cancel" onTap="clearSearch">搜索</view>
+        </view>
+      </view>
+    </view>
+    <view class="body">
+      <view class="fanli-step">
+        <image mode="widthFix" src="../../images/fanyong-bg.png" />
+        <view class="fanyong-top">
+          视频教程 >
+        </view>
+      </view>
+      <view a:if="{{ !Verifyflag }}" class="jisufan">
+        <view>
+          <image mode="widthFix" src="../../images/jisufan.png" class="jisufan-iamge" />
+          <text>开通极速返后，即买即返</text>
+        </view>
+
+        <view class="jisufan-text" onTap="goQkt">
+          <text class="qvkait">去开通</text>
+        </view>
+      </view>
+      <view class="elemeimage" onTap="oneleBag">
+        <image mode="widthFix" src="../../images/eleme.png" style="width:94%"/>
+      </view>
+    </view>
+    
+    <!--<view class="redbag"><view class="eleme">
+      <view class="ele-left">
+        <image mode="widthFix" src="../../images/red1.png" />
+        <view class="ele-right" onTap="oneleBag"><text class="youhuiquan">饿了么优惠券\n</text><text class="sub">大额外卖券天天领</text></view></view></view><view class="eleme"><view class="ele-left"><image mode="widthFix" src="../../images/red2.png" /><view class="ele-right" onTap="onRedBag"><text class="youhuiquan">天天领红包\n</text><text class="sub">每天签到领现金</text></view></view></view></view> -->
+    <view class="way-select-wrap">
+      <view class="right">
+        <view
+          a:for="{{ titleArr }}"
+          class="menumain"
+          onTap="waySelectClick"
+          data-index="{{index}}"
+        >
+          <text>{{item}}\n</text>
+          <text class="{{current == index ?'active':'items'}}" style="position:absolute;
+           bottom:-20rpx;
+           left:40rpx">
+          </text>
+        </view>
+      </view>
+    </view>
+    <!-- 使用 component 组件 渲染插件组件 hello。hello为插件plugin.json中对外暴露的组件 -->
+    <!--<component a:if="{{isReady}}" is="dynamic-plugin://2021001131694653/hello"><view>hello</view></component><navigator url="dynamic-plugin://2021001131694653/hello">
+      使用navigator组件跳转到插件页面</navigator><button onTap="navToPluginPage">跳转到插件页面</button> -->
+
+ <!-- 以下是自营商品 -->
+ <block a:if="{{ current == 0 }}">
+    <view a:for="{{ zylist }}" class="goods-top" key="{{item}}" data-ids="{{item.id}}" onTap="onProductDetail">
+      <view class="left">
+        <image mode="widthFix" src={{item.pic}} class="img" />
+      </view>
+      <view class="right-item">
+        <view class="price-content1">
+          <text class="name1">
+            {{item.title}}
+          </text>
+        </view>
+        <view class="present-price1">
+          <view>
+            <text class="yuanjia"> ¥{{item.price}}</text>
+            <text class="original-price">
+              ¥{{item.price}}
+            </text>
+          </view>
+
+          <view class="goumai">
+            立即购买
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+<!-- 以上是自营商品 -->
+    <view a:for="{{ list }}" key="{{item}}" class="goods-top-item">
+      <fanlilist goodlist="{{item}}"></fanlilist>
+      <!--<view style="height:30rpx"></view> -->
+    </view>
+
+
+    <view a:if="{{ list.length <= 0 }}" class="nomore">
+      暂无商品
+    </view>
+    <view style="height:20rpx">
+
+    </view>
+    <!--<view class="good-list"><view a:for="{{ goodsList }}" key="{{item}}"><fanli-bottom-list goods={{item}}></fanli-bottom-list></view></view> -->
+    <dialog
+      show="{{show}}"
+      title=''
+      showPhoneBtn="{{true}}"
+      closeBtn="{{true}}"
+      onClose="onClose"
+    >
+      <block a:if="{{ isProductLink }}">
+        <view>
+          <image
+            mode="widthFix"
+            src="{{productObj.pict_url}}"
+            style="width:100%"
+            class="borderimg"
+          />
+          <view class="goodscontent">
+            <text class="name">
+              {{productObj.title}}
+            </text>
+            <view class="price-top">
+              <view class="zimai-left">
+                <view class="price-left">
+                  <view class="lingquan">
+                    {{productObj.coupon_amount}}元券
+                  </view>
+                </view>
+                <view class="price-top1">
+                  <text class="lifan-left">返</text>
+                  <text class="lifan-right">¥{{productObj.estimate_fan}}</text>
+                </view>
+              </view>
+
+              <!--<view class="yugufan"><view class="lifan-left">预估返</view><view class="lifan-right">¥{{productObj.estimate_fan}}</view></view> -->
+            </view>
+
+            <view class="present-price">
+              <view class="yuanjia"> ¥{{productObj.user_pay_price}}</view>
+              <view class="yigoumai">{{productObj.volume}}人已购买</view>
+            </view>
+
+          </view>
+        </view>
+        <!-- 搜索链接http {{clipboardText }} -->
+        <view class="ali-wrap-btns">
+          <button form-type="submit" class="gobuy pop-okay" onTap="onGoBuy">
+            购买
+          </button>
+          <!--<text onTap="ceshi">测试</text> -->
+        </view>
+      </block>
+      <block a:else>
+        <view class="dialog-top">
+          <view class="flex-warp">
+            <view class="left-big-box">
+              <text class="left-text">智能精准识别\n</text>
+              <text class="left-bottom-text">是否搜索以下商品</text>
+            </view>
+
+            <image mode="widthFix" src="../../images/quan.png" />
+          </view>
+        </view>
+        <view class="padding-content">
+          <view class="clipboard">
+            {{clipboardText}}
+          </view>
+          <view class="ali-wrap-btns">
+            <button form-type="submit" class="pop-btn pop-okay" onTap="onJumpSearch">
+              点击搜券
+            </button>
+          </view>
+        </view>
+
+      </block>
+    </dialog>
+  </scroll-view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "fanlilist":"../components/index/fanli/fanli"
+  },
+  "styleIsolation": "apply-shared",
+  "pullRefresh": false,
+  "onReachBottomDistance": 100
+}

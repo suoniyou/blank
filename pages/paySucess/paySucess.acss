@@ -1,0 +1,19 @@
+.content{
+  width: 100%;
+  height: 350rpx;
+  text-align: center;
+  background-color: #fff;
+  padding-top: 60rpx;
+}
+.content image{
+   width: 20%;
+}
+.success{
+  font-size: 48rpx;
+  padding-top: 50rpx;
+  line-height: 12px;
+}
+.content text{
+   font-size: 24rpx;
+   
+}

@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order/index",
+    "pages/withdraw/index",
+    "pages/withDrawNow/withDrawNow",
+    "pages/accountList/accountList",
+    "pages/withdrawRecord/withdrawRecord",
+    "pages/web/web",
+    "pages/searchPage/searchPage",
+    "pages/productDetail/productDetail",
+    "pages/Address/Address",
+    "pages/goToPay/goToPay",
+    "pages/paySucess/paySucess"
+  ],
+  "window": {
+    "defaultTitle": "福利鸭"
+  },
+  "behavior": {
+    "requestReferrerStrategy": "page"
+  },
+  "tabBar": {
+    "textColor": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#ffffff",
+    "items": [
+      {
+        "pagePath": "pages/index/index",
+        "name": "首页",
+        "icon": "images/index.png",
+        "activeIcon": "images/activeindex.png"
+      },
+      {
+        "pagePath": "pages/order/index",
+        "name": "订单",
+        "icon": "images/order.png",
+        "activeIcon": "images/activeorder.png"
+      },
+      {
+        "pagePath": "pages/withdraw/index",
+        "name": "提现",
+        "icon": "images/user.png",
+        "activeIcon": "images/activeuser.png"
+      }
+    ]
+  },
+  "plugins": {
+    "captcha4": {
+      "version": "*",
+      "provider": "2021002178617823"
+    }
+  },
+  "useDynamicPlugins": true
+}

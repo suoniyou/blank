@@ -1,0 +1,65 @@
+.hrbbcf_pages{
+  width: 100%;
+}
+.mask{
+  position:fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.4);
+   z-index: 99999;
+}
+.modal-wrapper{
+  width: 540rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #fff;
+  z-index: 1000000;
+  /* min-height: 800rpx; */
+  border-radius: 20rpx;
+  /* overflow: hidden; */
+}
+.close{
+  transform: translate(-50%,-50%);
+  position: absolute;
+  bottom: -100rpx;
+  left: 50%;
+  color: #fff;
+  z-index: 1000000;
+  overflow: hidden;
+  margin-top: 120rpx;
+}
+.clearicon{
+  /* position: absolute;
+  bottom: 10rpx;
+  left: 0%; */
+}
+.main-content .title{
+  /* padding-top: 20rpx; */
+  margin: 0rpx auto;
+  font-weight: 500;
+  font-size: 38rpx;
+  text-align: center;
+  line-height: 50px;
+}
+ 
+.modal-content .modal-btn-wrapper{
+  position: absolute;
+  bottom: 0rpx;
+  /* border-top: 1px solid #999 ; */
+  width: 100%;
+}
+.modal-content .modal-btn-wrapper .cancel-btn{
+  color: #ff3c56;
+}
+.content-txt{
+  width: 100%;
+  margin: 0rpx auto;
+  line-height: 55rpx;
+}

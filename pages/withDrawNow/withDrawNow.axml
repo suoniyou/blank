@@ -1,0 +1,136 @@
+<view>
+  <view class="main-container">
+    <view class="base-box withdraw-box">
+      <text class="small-title">提现金额</text>
+      <view class="withdraw-wrap">
+        <view class="input-wrap">
+          <input
+            class="withdraw-input"
+            placeholder="请输入提款金额"
+            onInput="onInput"
+            name="inputValue"
+          />
+
+        </view>
+        <view class="all-in-box">
+          <text class="all-in-text">全部提现</text>
+          <view class="remain-cost">可提现{{ amount / 100 }}元</view>
+        </view>
+      </view>
+      <view class="withdraw-condition">提现金额需大于1元</view>
+    </view>
+    <!-- <view class="account base-box">
+      <view class="account-title">提现账户</view>
+      <view class="user-wrap" onTap="onBindAccount">
+        <view class="user-left">
+          <image mode="scaleToFill" src="../../images/zhifubao.png" class="user-pic" />
+          <text class="ali-txt">{{ alipayShow }}</text>
+        </view>
+        <image class='next-icon' mode="scaleToFill" src="../../images/grzx_icon_more.png" />
+      </view>
+    </view> -->
+    <view class="user-phone-box base-box">
+      <view a:if="{{userPhone}}">
+        <view class="input-wrap1 input-line">
+          <view class="user-lable">手机号</view>
+          {{ userPhone.replace(/^(\d{3})\d{4}(\d{4})$/, "$1****$2") }}
+          <view onTap="showBindPhone" data-flag="{{true}}" class="verify-code">修改</view>
+        </view>
+        <captcha4
+               a:if="{{loadCaptcha1}}"
+              id="captcha"
+              captchaId="{{captchaId1}}"
+              onSuccess="captchaSuccess1"
+            />
+        <view class="input-wrap1">
+          <view class="user-lable">验证码</view>
+          <input
+            class="user-input code-width"
+            type="number"
+            name="verifyCode"
+            placeholder="请输入验证码"
+            onInput="getVerifycode"
+          />
+          <text onTap="getVerCode" data-index="1" data-phone="{{userPhone}}" class="verify-code">
+            {{ verCodeBtn1 }}
+          </text>
+        </view>
+      </view>
+      <view a:else class="input-wrap1 input-line">
+        <view class="user-lable">手机号</view>
+        <view onTap="showBindPhone" data-flag="{{false}}" class="verify-code">
+          绑定手机号
+        </view>
+      </view>
+      <view>
+      </view>
+    </view>
+    <button onTap="submitWithdraw" class="withdraw-okay-btn">确认提现</button>
+    <dialog
+      show="{{show}}"
+      title="{{editPhone ? '修改手机号':'绑定手机号'}}"
+      showPhoneBtn="{{true}}"
+    >
+      <form onSubmit="onSubmit" onReset="onReset"  class="form-account">
+        <view class="ali-account-box">
+          <view a:if="{{editPhone}}">
+            <view class="phone-show">
+              原手机号：{{ userPhone.replace(/^(\d{3})\d{4}(\d{4})$/, "$1****$2") }}
+            </view>
+            <captcha4
+            a:if="{{userPhone}}"
+            id="captcha"
+            captchaId="{{captchaId2}}"
+            onSuccess="captchaSuccess2"
+          />
+            <view style="position: relative;">
+              <input
+                class="ali-account"
+                placeholder="验证码"
+                maxlength="6"
+                name="verifycode"
+              />
+              <view onTap="getVerCode" data-index="2" data-phone="{{userPhone}}"  class="verify-code">
+                {{ verCodeBtn2 }}
+              </view>
+            </view>
+          </view>
+          <view class="ali-input-box">
+            <input
+              class="ali-name"
+              type="input"
+              placeholder="{{editPhone ? '新手机号' : '手机号'}}"
+              name="mobile_new"
+              onInput="getInput"
+            />
+            <captcha4
+              a:if="{{loadCaptcha}}"
+              id="captcha"
+              captchaId="{{captchaId}}"
+              onSuccess="captchaSuccess"
+            />
+
+            <view a:if="{{!editPhone}}" style="position: relative;">
+              <input
+                class="ali-account"
+                type="input"
+                name="verifycode"
+                placeholder="验证码"
+                maxlength="6"
+                onInput="getVerifycode"
+              />
+              <view data-index="3" onTap="getVerCode" data-phone="{{mobile_new}}" class="verify-code">
+                {{ verCodeBtn3 }}
+              </view>
+            </view>
+          </view>
+
+        </view>
+        <view class="ali-wrap-btns">
+          <button form-type="reset" class="pop-btn pop-cancle">取消</button>
+          <button form-type="submit" class="pop-btn pop-okay">确认</button>
+        </view>
+      </form>
+    </dialog>
+  </view>
+</view>

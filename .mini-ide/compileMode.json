@@ -1,0 +1,70 @@
+{
+  "modes": [
+    {
+      "title": "pages/order/index",
+      "page": "pages/order/index",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/withdraw/index",
+      "page": "pages/withdraw/index",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/withDrawNow/withDrawNow",
+      "page": "pages/withDrawNow/withDrawNow",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/accountList/accountList",
+      "page": "pages/accountList/accountList",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/index/index",
+      "page": "pages/index/index",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/searchPage/searchPage",
+      "page": "pages/searchPage/searchPage",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "商品详情",
+      "page": "pages/productDetail/productDetail",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "收货地址",
+      "page": "pages/Address/Address",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/goToPay/goToPay",
+      "page": "pages/goToPay/goToPay",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "支付成功",
+      "page": "pages/paySucess/paySucess",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/withdrawRecord/withdrawRecord",
+      "page": "pages/withdrawRecord/withdrawRecord",
+      "launchMode": "common",
+      "pageQuery": ""
+    }
+  ]
+}

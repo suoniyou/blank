@@ -1,0 +1,6 @@
+<!-- <view>
+  <web-view src="https://s.click.taobao.com/AbLFUCu" onMessage="onmessage"/>
+</view> -->
+<view>
+  <web-view src="{{url}}" onMessage="onmessage"/>
+</view>

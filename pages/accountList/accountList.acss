@@ -1,0 +1,110 @@
+.warp{
+  padding: 0.24rem;
+}
+.base-box {
+  width: 702rpx;
+  min-height: 10rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin: 0rpx auto;
+  margin-bottom: 0.16rem;
+}
+
+.withdraw-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.24rem;
+  padding: 20rpx 0;
+}
+
+.withdraw-box view {
+  width: 33.3%;
+  text-align: center;
+  color: #646566;
+  font-size: 24rpx;
+}
+
+.withdraw-box text {
+  width: 30%;
+  text-align: center;
+}
+
+.line-box {
+  padding-top: 55rpx;
+  color: #646566;
+  font-size: 30rpx;
+}
+
+.line-box1 {
+  padding-top: 15rpx;
+}
+
+.account {
+  line-height: 40rpx;
+}
+
+.user-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-left {
+  display: flex;
+  align-items: center;
+}
+
+.user-pic {
+  width: 70rpx;
+  height: 56rpx;
+  display: block;
+}
+
+.ali-txt {
+  color: #1a1a1a;
+  font-size: 28rpx;
+}
+
+.next-icon {
+  display: block;
+  width: 32rpx;
+  height: 32rpx;
+
+}
+.pop-btn {
+  width: 200rpx;
+  background: #f5f5f5;
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+.pop-cancle {
+  color: #1a1a1a;
+  background-color: #f5f5f5;
+}
+.pop-okay {
+  color: #fff;
+  background-color: #ff3c56;
+}
+.ali-wrap-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 80rpx auto;
+}
+.input{
+  font-size: 28rpx;
+}
+.nodata{
+  font-size: 22rpx;
+  color: #646566;
+  padding:80rpx 0;
+  text-align: center;
+}

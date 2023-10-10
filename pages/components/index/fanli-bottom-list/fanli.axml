@@ -1,0 +1,33 @@
+<view>
+  <view class="goods-item" onTap="goodsClick">
+   
+      <image mode="widthFix" src={{goods.product_img}} class="img" />
+   
+    <view class="main">
+      <view class="title-wrap">
+        <text class="coupon-price" a:if="{{goods.couponPrice >0 }}">{{goods.couponPrice}}元券</text>
+        <text class="goods-title">
+            {{goods.product_name}}
+        </text>
+        <text class="volume">
+          <!-- 月销{{goods.volume}} |  -->
+          剩余{{goods.reserve}}
+      </text>
+      <view class="btn-wrap">
+        <view class="price-left">
+            <view class="original-price" >
+                <text a:if="{{goods.product_price_origin}}">￥{{goods.product_price_origin}}</text>
+                </view>
+            <view class="present-price">￥<text class="price">{{goods.product_price}}</text></view>
+        </view>
+        <view class="btn-right">
+            立即购买
+        </view>
+    </view>
+
+        
+      </view>
+      
+  </view>
+  </view>
+  </view>

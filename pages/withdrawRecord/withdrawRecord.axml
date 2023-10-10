@@ -1,0 +1,28 @@
+<view>
+  <view class="withdraw-record">
+    <view class="main">
+      <view a:for="{{listData}}" class="item">
+        <view class="left">
+          <view class="money">
+            <text class="unit">¥</text>{{item.amount}}
+          </view>
+          <view class="time">{{item.ctime}}</view>
+        </view>
+        <view class="right">
+          <view class="status">
+            {{item.status}}
+          </view>
+        </view>
+      </view>
+      <view a:if="{{ listData.length <= 0 }}" class="nomore">
+        <view class="noimage">
+          <image mode="widthFix" src="../../images/wdj.png" />
+        </view>
+       
+         <view class="notext">暂无数据～</view>
+         
+      </view>
+ </view>
+</view>
+
+</view>

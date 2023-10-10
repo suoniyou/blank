@@ -1,0 +1,95 @@
+.goods-item {
+  width: 45.6vw;
+  height: 74.4vw;
+  background: #fff;
+  border-radius: 3.2vw;
+  margin-top: 2.4vw;
+}
+
+.goods-item .img {
+  width: 45.6vw;
+  height: 45.6vw;
+  border-radius: 3.2vw 3.2vw 0 0;
+}
+
+.main {
+  padding: 2.133vw;
+}
+
+.title-warp {
+  display: flex;
+  align-items: center;
+  font-size: 3.733vw;
+  color: #1a1a1a;
+}
+
+.coupon-price {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 60, 86, 0.3);
+  font-size: 24px;
+  color: #FF3C56;
+  display: table;
+  padding: 0 8px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.goods-title {
+  flex: 1;
+  /* margin-left: 1.067vw; */
+  font-weight: 700;
+  display:-webkit-box;
+  -webkit-line-clamp:1; 
+  overflow:hidden; 
+  text-overflow:ellipsis;
+   -webkit-box-orient:vertical; 
+   word-break:break-all;
+   font-size: 3.7vw;
+ 
+}
+.volume{
+  font-size: 3.2vw;
+    font-weight: 400;
+    color: #b2b2b2;
+    margin-top: 2.133vw;
+}
+.btn-wrap{
+  display: flex;
+    justify-content: space-between;
+    margin-top: 4vw;
+}
+.price-left{
+  display: flex;
+  flex-direction: column;
+  height: 8.533vw;
+  justify-content: flex-end;
+}
+.original-price{
+  font-size: 3.2vw;
+    font-weight: 400;
+    color: #b2b2b2;
+    text-decoration: line-through;
+}
+.present-price{
+  font-size: 3.2vw;
+  color: #ff3c56;
+  font-weight: 700;
+}
+.price {
+  font-size: 4.267vw;
+}
+.btn-right{
+  width: 19.2vw;
+  height: 8.533vw;
+  background: #ff3c56;
+  border-radius: 4.4vw;
+  font-size: 3.2vw;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

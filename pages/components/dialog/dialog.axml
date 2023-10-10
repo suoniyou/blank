@@ -1,0 +1,26 @@
+<view class="hrbbcf_pages">
+  <view a:if="{{show}}" class="mask" onTap="clickMask"></view>
+  <view a:if="{{show}}" class="modal-wrapper">
+    <view class="modal-content">
+      <!-- style="height:{{modalHeight}};width:{{modalWidth}}" -->
+      <view class="main-content" style="height:{{modalHeight}};">
+        <view class="content-txt">
+          <view class="title">{{title}}</view>
+          <slot></slot>
+        </view>
+      </view>
+      <view class="modal-btn-wrapper">
+        <button a:if="{{showOkBtn}}" class="cancel-btn" onTap="onOk">{{okText}}</button>
+        <button a:if="{{showCancelBtn}}" class="cancel-btn" onTap="onCancel">
+          {{cancelText}}
+        </button>
+      </view>
+    </view>
+    <view class="close" onTap="onClose" a:if="{{ closeBtn }}">
+      <icon type="clear" size="24" class="clearicon" color="#fff" />
+  </view>
+   
+  </view>
+ 
+
+</view>

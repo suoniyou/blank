@@ -1,0 +1,228 @@
+.main-container{
+  min-height: 95vh;
+  background-color: #f5f5f5;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.base-box {
+  /* width: 702rpx; */
+  /* min-height: 10rpx; */
+  background: #fff;
+  border-radius: 24rpx;
+  margin-bottom: 16rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.small-title {
+  font-size: 28rpx;
+  color: #1a1a1a;
+  font-weight: bold;
+}
+.withdraw-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 14rpx 0;
+  border-bottom: 0.5px solid #f5f5f5
+}
+.input-wrap {
+  width: 50%;
+  position: relative;
+}
+.withdraw-input {
+  width: 100%;
+  color: #1a1a1a;
+  height: 84rpx;
+  padding: 0 48rpx;
+}
+.withdraw-input::before {
+  height: 84rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  content: "￥";
+  color: #1a1a1a;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.all-in-box {
+  text-align: right;
+  width: 50%;
+
+  }
+  .all-in-text {
+    color: #ff3212;
+    font-size: 28rpx;
+  }
+  .remain-cost {
+    margin-top: 5rpx;
+    color: #b2b2b2;
+    font-size: 22rpx;
+  }
+  .withdraw-condition {
+    color: #b2b2b2;
+    font-size: 24rpx;
+    text-align: left;
+    margin-top: 16rpx;
+  }
+  .account {
+    height: 168rpx;
+   }
+   .account-title {
+    font-size: 28rpx;
+    color: #1a1a1a;
+    font-weight: bold;
+  }
+  .user-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24rpx;
+  }
+  
+    .user-left {
+      display: flex;
+      align-items: center;}
+      .user-pic {
+        width: 70rpx;
+        height: 56rpx;
+        display: block;
+      }
+      .ali-txt {
+        color: #1a1a1a;
+        font-size: 28rpx;
+      }
+      .next-icon {
+        display: block;
+        width: 3.267vw;
+        height: 3.267vw;
+      }
+      .user-phone-box {
+        padding: 0 24rpx;
+        box-sizing: border-box;
+      }
+      .input-wrap1 {
+        display: flex;
+        height: 104rpx;
+        align-items: center;
+        position: relative;
+      }
+      .user-lable {
+        width: 134rpx;
+        color: #1a1a1a;
+        font-size: 28rpx;
+      }
+      .user-input {
+        color: #1a1a1a;
+        font-weight: bold;
+        font-size: 28rpx;
+        display: block;
+      }
+      .user-input.code-width {
+        width: 300rpx;
+      }
+      .verify-code {
+        position: absolute;
+        right: 24rpx;
+        top: 36rpx;
+        font-size: 28rpx;
+        color: #ff3212;
+      }
+      .verify-code1{
+        position: absolute;
+        right: 8rpx;
+        top: 10rpx;
+        font-size: 28rpx;
+        color: #ff3212;
+        border: 0; padding: 0;
+      }
+      
+  .withdraw-okay-btn {
+    width: 702rpx;
+    height: 88rpx;
+    background: #ffe100;
+    border-radius: 44rpx;
+    font-size: 32rpx;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 86rpx;
+  }
+  .ali-account-box {
+    /* width: 590rpx; */
+    background: #fff;
+    border-radius: 24rpx 24rpx 24rpx 24rpx;
+    text-align: center;
+    /* padding: 20rpx 0; */
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .form-account{
+    width: 90%;
+    margin: 0rpx auto;
+  }
+  .pop-title {
+    color: #1a1a1a;
+    font-size: 32rpx;
+  }
+  .ali-input-box {
+    text-align: left;
+    /* margin-top: 15rpx */
+  }
+ .phone-show {
+      text-align: left;
+      font-size: 28rpx;
+      line-height: 96rpx;
+      font-weight: bold;
+      border-bottom: 0.5rpx solid #f5f5f5;
+      padding-left: 10rpx;
+    }
+    .ali-name,
+    .ali-account {
+      width: 100%;
+      height: 96rpx;
+      text-align: left;
+      line-height: 96rpx;
+      font-size: 28rpx;
+      font-weight: bold;
+      border-bottom: 0.5rpx solid #f5f5f5;}
+      .ver-code {
+        width: 50%;
+        height: 96rpx;
+        line-height: 96rpx;
+        font-size: 28rpx;
+        font-weight: bold;
+        border-bottom: 0.5px solid #f5f5f5;
+      }
+      .ali-wrap-btns {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8rpx;
+        margin-bottom: 18rpx;
+      
+      }
+      .pop-btn {
+        width: 220rpx;
+        height: 80rpx;
+        background: #f5f5f5;
+        border-radius: 44rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 32rpx;
+      }
+      .pop-cancle {
+        color: #1a1a1a;
+        background-color: #f5f5f5;
+      }
+      .pop-okay {
+        color: #1a1a1a;
+        background-color: #ffe100;
+      }
+      .line-box1 {
+        padding-top: 15rpx;
+      }

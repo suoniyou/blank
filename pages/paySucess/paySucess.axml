@@ -1,0 +1,18 @@
+<view>
+    <view class="content">
+      <view a:if="{{ !failFlag }}">
+        <image mode="widthFix" src="../../images/success.png" />
+        <view class="success">
+          支付成功
+        </view>
+      </view>
+      <view a:else>
+        <icon type="cancel" size="60"/>
+        <view class="success">
+          支付失败
+        </view>
+      </view>
+       
+       <text>\n即将返回首页({{timer}}s)</text>
+    </view>
+</view>
