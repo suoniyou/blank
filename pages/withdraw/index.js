@@ -69,7 +69,6 @@ Page({
   },
   onLoad(query) {
     this.funVerifyflag()
-    this.getAmount1()
     // 页面加载
     console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
 
@@ -79,7 +78,7 @@ Page({
   },
 
   onShow() {
-
+    this.getAmount1()
     // 页面显示
   },
   onHide() {

@@ -88,7 +88,7 @@ App({
   },
 
   onLaunch(options) {
-    this.allfun()
+   
     // let token = my.getStorageSync({
     //   key: 'token'
     // });
@@ -101,6 +101,7 @@ App({
 
   },
   onShow(options) {
+    this.allfun()
 
     // 从后台被 scheme 重新打开
     // options.query == {number:1}

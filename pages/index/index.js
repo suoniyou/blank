@@ -75,11 +75,13 @@ Page({
           this.setData({
             Verifyflag: app.globalData.Verifyflag
           })
+          console.log(app.globalData.Verifyflag,'app.globalData.Verifyflag');
+          console.log(this.data.Verifyflag,'Verifyflag');
          
         }
       }
     })
-    console.log(this.data.Verifyflag,'Verifyflag');
+   
   },
   getGoodsNine(pageindex) {
     let obj = {
@@ -355,18 +357,18 @@ Page({
     }
 
   },
+
   onLoad(query) {
-    app.tokenObtainedCallback = () => {
+   app.tokenObtainedCallback = () => {
       this.getGoodslist1()
       this.getZYGoodsList()
-
-
-    };
+     };
     this.getVerifyStstus()
     my.setNavigationBar({
       frontColor: '#000000',
       backgroundColor: '#FFE100'
     })
+    
 
   },
   navToPluginPage() {
