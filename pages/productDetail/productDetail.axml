@@ -35,7 +35,7 @@
    </view>
   <view class="detail-image">
     <text>宝贝详情</text>
-    <view a:for="{{ detailsArr }}">
+    <view a:for="{{ detailsArr }}" style="height:100%" class="detail-image1">
       <image mode="widthFix" src="{{item.url}}" />
     </view>
    

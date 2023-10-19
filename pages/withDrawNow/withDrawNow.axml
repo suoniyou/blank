@@ -7,13 +7,14 @@
           <input
             class="withdraw-input"
             placeholder="请输入提款金额"
+            value="{{inputValue}}"
             onInput="onInput"
             name="inputValue"
           />
 
         </view>
         <view class="all-in-box">
-          <text class="all-in-text">全部提现</text>
+          <text class="all-in-text" onTap="onWithdrawal">全部提现</text>
           <view class="remain-cost">可提现{{ amount / 100 }}元</view>
         </view>
       </view>

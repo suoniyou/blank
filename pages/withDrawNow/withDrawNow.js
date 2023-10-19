@@ -8,7 +8,7 @@ import {
 const base64 = require('../../utils/base64.js')
 Page({
   data: {
-    inputValue: '',
+    inputValue: Number,
     amount: 0,
     alipayShow: "",
     show: false,
@@ -65,8 +65,12 @@ Page({
       verifycode: e.detail.value
     })
   },
+  onWithdrawal(){
+    this.setData({
+      inputValue:this.data.amount / 100
+    })
+  },
   getVerCode(e) {
-    console.log(e);
     let phone = this.data.mobile_new || e.target.dataset.phone
     let n = e.target.dataset.index
     if (!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test(phone)) {

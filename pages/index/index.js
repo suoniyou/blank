@@ -16,6 +16,7 @@ import {
 const app = getApp()
 Page({
   data: {
+    noProcuct:false,
     zylist: [],
     loading: true,
     isReady: false,
@@ -222,11 +223,11 @@ Page({
     })
   },
   getGoodslist1(pageindex) {
-    console.log(pageindex, 'pageindex');
     let obj = {
       p: pageindex ? pageindex : 1,
       platform: 2
     }
+   
     getGoodslist(obj).then(res => {
       if (res.code == 200) {
         const items = res.data;
@@ -247,6 +248,12 @@ Page({
           })
 
         }
+        if(this.data.list <= 0){
+            this.setData({
+              noProcuct:true
+            })
+        } 
+        my.hideLoading()
       }
       if (res.code == 102) {
         my.navigateTo({
@@ -255,11 +262,8 @@ Page({
       }
 
     })
+},
 
-
-
-
-  },
   handleSearch(e) {
     console.log('search', e.detail.value);
     this.setData({
@@ -326,7 +330,7 @@ Page({
   },
   lower() {
     // my.pageScrollTo({
-    //   scrollTop: 50
+    //   scrollTop: 500
     // })
     const that = this
     that.setData({

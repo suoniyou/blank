@@ -13,12 +13,15 @@ export function request(config) {
   } = {
     ...config
   }
-  // 加载loading
-  // my.showLoading({
-  //   content: '加载中...',
-  //   // delay: 10000,
-  // });
-  console.log(token, 'token.data');
+  console.log(config, url, 'url');
+  if (config.url == '/home/index/alipaygoods') {
+    // 加载loading
+    my.showLoading({
+      content: '加载中...',
+      // delay: 10000,
+    });
+  }
+
   return new Promise((resolve, reject) => {
     my.request({
       url: host + url,
@@ -37,15 +40,15 @@ export function request(config) {
           my.switchTab({
             url: '/pages/index/index'
           })
-        }else{
+        } else {
           my.showToast({
             type: 'none',
             content: res.data.msg,
-            duration:3000
-            
+            duration: 3000
+
           });
         }
-       
+
 
         // resolve(res.data)
         my.hideLoading()
