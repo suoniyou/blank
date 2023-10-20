@@ -16,9 +16,10 @@ import {
 const app = getApp()
 Page({
   data: {
-    noProcuct:false,
+    minutetime:null,
+    noProcuct: false,
     zylist: [],
-    loading: true,
+    loading: false,
     isReady: false,
     snum: 99,
     waySelect: 1,
@@ -35,7 +36,8 @@ Page({
     pageindex: 1,
     totalPage: 0,
     scrollTop: 0,
-    Verifyflag: false
+    Verifyflag: false,
+    failCopy: true
   },
   clearSearch11() {
     this.setData({
@@ -48,7 +50,9 @@ Page({
     this.setData({
       pageindex: 1
     })
-    if (index == 0) { this.getZYGoodsList(),this.getGoodslist1()}
+    if (index == 0) {
+      this.getZYGoodsList(), this.getGoodslist1()
+    }
     if (index == 1) this.getGoodsNine()
     if (index == 2) this.getGoodsKol()
     this.setData({
@@ -76,13 +80,13 @@ Page({
           this.setData({
             Verifyflag: app.globalData.Verifyflag
           })
-          console.log(app.globalData.Verifyflag,'app.globalData.Verifyflag');
-          console.log(this.data.Verifyflag,'Verifyflag');
-         
+          console.log(app.globalData.Verifyflag, 'app.globalData.Verifyflag');
+          console.log(this.data.Verifyflag, 'Verifyflag');
+
         }
       }
     })
-   
+
   },
   getGoodsNine(pageindex) {
     let obj = {
@@ -104,7 +108,8 @@ Page({
             newItems.push(items[i])
           }
           this.setData({
-            list: newItems
+            list: newItems,
+            loading: false
           })
 
         }
@@ -133,8 +138,11 @@ Page({
           for (let i = 0; i < items.length; i++) {
             newItems.push(items[i])
           }
+          // var list = this.data.list;
+          // list = list.concat(newItems) 
           this.setData({
-            list: newItems
+            list: newItems,
+            loading: false
           })
 
         }
@@ -186,10 +194,6 @@ Page({
     my.navigateTo({
       url: '/pages/web/web?coupon_click_url=' + this.data.productObj.coupon_click_url
     })
-    this.setData({
-      loading: false,
-
-    })
 
   },
   // getSpecialGoods1() {
@@ -212,14 +216,14 @@ Page({
           }
 
         )
-       // this.data.list = this.data.list.concat(this.zylist)
+        // this.data.list = this.data.list.concat(this.zylist)
       }
     })
   },
-  onProductDetail(e){
+  onProductDetail(e) {
     const id = e.currentTarget.dataset.ids
     my.navigateTo({
-      url:"/pages/productDetail/productDetail?id=" + id
+      url: "/pages/productDetail/productDetail?id=" + id
     })
   },
   getGoodslist1(pageindex) {
@@ -227,7 +231,7 @@ Page({
       p: pageindex ? pageindex : 1,
       platform: 2
     }
-   
+
     getGoodslist(obj).then(res => {
       if (res.code == 200) {
         const items = res.data;
@@ -241,19 +245,21 @@ Page({
         } else {
           let newItems = JSON.parse(JSON.stringify(this.data.list))
           for (let i = 0; i < items.length; i++) {
-            newItems.push(items[i])
+             newItems.push(items[i])
           }
           this.setData({
-            list: newItems
+            list: newItems,
+            loading: false
           })
 
         }
-        if(this.data.list <= 0){
-            this.setData({
-              noProcuct:true
-            })
-        } 
-        my.hideLoading()
+
+        // if (this.data.list <= 0) {
+        //   this.setData({
+        //     noProcuct: true
+        //   })
+        // }
+     
       }
       if (res.code == 102) {
         my.navigateTo({
@@ -262,7 +268,7 @@ Page({
       }
 
     })
-},
+  },
 
   handleSearch(e) {
     console.log('search', e.detail.value);
@@ -334,6 +340,7 @@ Page({
     // })
     const that = this
     that.setData({
+      loading: true,
       pageindex: that.data.pageindex + 1
     })
     const listLength = that.data.list.length
@@ -353,7 +360,10 @@ Page({
 
 
     } else {
-      my.showToast({
+      this.setData({
+        noProcuct: true
+      })
+     my.showToast({
         type: 'none',
         content: '没有更多数据了',
         duration: 2000
@@ -363,16 +373,16 @@ Page({
   },
 
   onLoad(query) {
-   app.tokenObtainedCallback = () => {
+    app.tokenObtainedCallback = () => {
       this.getGoodslist1()
       this.getZYGoodsList()
-     };
+    };
     this.getVerifyStstus()
     my.setNavigationBar({
       frontColor: '#000000',
       backgroundColor: '#FFE100'
     })
-    
+
 
   },
   navToPluginPage() {
@@ -396,7 +406,8 @@ Page({
     }
 
   },
-  onShow() {
+  //读取剪切板
+  readClipboard() {
     var that = this
     my.getClipboard({
       success: function (res) {
@@ -409,7 +420,6 @@ Page({
             that.getLinkProduct()
 
           } else {
-            console.log(that.data.clipboardText.length, '1212');
             // if (that.data.clipboardText.length >= 20) {
             //   that.setData({
             //     show: true,
@@ -430,18 +440,85 @@ Page({
 
       },
       fail: function (err) {
-        // if (err.error == 2001 || err.error == 2002 || err.error == 30) {
-        // my.setStorageSync({key:'isAuthfailed',data:err.error})
+        console.log(err);
         my.setClipboard({
           text: ''
         });
+        if (err.error == 30 || err.error == 2001 || err.error == 2002 || err.error == 2003) {
+          my.getServerTime({
+            success: (res) => {
+              let timer = res.time
+              my.setStorageSync({key:"failtimer",data:timer})
+      
+            }
+         })
+           
 
-        // }
-        console.log(err);
+        }
+
+
+
       }
 
+
     })
+
   },
+  // countDown(){
+  //   let count = 900
+  //    var timee = setInterval(() => {
+  //     count--
+  //     if (count == 0) {
+  //       this.readClipboard()
+  //       clearInterval(timee)
+  //     }
+  //     my.setStorageSync({
+  //       key:"countdown",
+  //       data:count
+  //     })
+  //   }, 1000)
+ 
+  // },
+  diaplayTime(){
+    var minute = 1000 * 60;
+    var timer = my.getStorageSync({ key:"failtimer"}) // 拒绝授权的时间戳
+    console.log(timer.data,'timer');
+    var now = new Date();
+    var curtime = now.getTime()
+    console.log(curtime,'curtime');
+    if(timer.data != null){
+      var diffValue = curtime - timer.data;
+    }
+   
+     console.log(diffValue,'diffValue') 
+    if(diffValue < 0){
+      return;
+    }
+    var minC =diffValue/minute;
+    console.log(minC,'minC') 
+    if(minC > 0){
+      this.setData({
+        minutetime:parseInt(minC)
+      })
+    }
+     
+    
+    
+
+
+    
+    
+
+  },
+  onShow() {
+    this.diaplayTime()
+    console.log(this.data.minutetime,'result');
+   
+    if(this.data.minutetime == null || this.data.minutetime > 15){
+      this.readClipboard()
+    }
+   
+ },
   onHide() {
 
   },

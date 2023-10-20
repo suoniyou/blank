@@ -13,14 +13,13 @@ export function request(config) {
   } = {
     ...config
   }
-  console.log(config, url, 'url');
-  if (config.url == '/home/index/alipaygoods') {
-    // 加载loading
-    my.showLoading({
-      content: '加载中...',
-      // delay: 10000,
-    });
-  }
+  // if (config.url == '/home/index/alipaygoods') {
+  //   // 加载loading
+  //   my.showLoading({
+  //     content: '加载中...',
+  //     // delay: 10000,
+  //   });
+  // }
 
   return new Promise((resolve, reject) => {
     my.request({

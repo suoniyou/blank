@@ -93,6 +93,7 @@
 }
 
 .goods-top-item {
+  /* height: 100%; */
   width: 93.6vw;
   margin: 0 auto;
 }

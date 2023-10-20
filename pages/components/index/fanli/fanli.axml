@@ -1,6 +1,6 @@
 <view a:if="{{ goodlist.pict_url }}" class="goods-top-item" onTap="goodsClick">
   <view class="left">
-    <image mode="widthFix" src={{goodlist.pict_url}} class="img" />
+    <image mode="widthFix" src={{goodlist.pict_url}} lazy-load="{{true}}" class="img" />
   </view>
   <view class="right">
     <view class="name">
@@ -60,7 +60,7 @@
   <view class="goods-top-item" data-ids="{{goodlist.id}}" onTap="goodsClicks">
 
     <view class="left">
-      <image mode="widthFix" src={{goodlist.product_img}} class="img" />
+      <image mode="widthFix" lazy-load="{{true}}" src={{goodlist.product_img}} class="img" />
     </view>
     <view class="right">
       <text class="name">

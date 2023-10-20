@@ -3,8 +3,8 @@
     scroll-y="{{true}}"
     style="width:100%;height:100vh;"
     enable-back-to-top="true"
+    lower-threshold="250"
     onScrollToLower="lower"
-    lower-threshold="150"
   >
     <view class="top">
 
@@ -20,11 +20,11 @@
             onConfirm="clearSearch"
             onInput="handleSearch"
           />
-          <view class="closefanwei" onTap="clearSearch11" >
+          <view class="closefanwei" onTap="clearSearch11">
             <icon type="clear" size="22" class="clearicon" />
           </view>
           <icon type="search" aria-label="search" size="18" class="search-icon" />
-        
+
           <view class="search-cancel" onTap="clearSearch">搜索</view>
         </view>
       </view>
@@ -47,14 +47,11 @@
         </view>
       </view>
       <view class="elemeimage" onTap="oneleBag">
-        <image mode="widthFix" src="../../images/eleme.png" style="width:94%"/>
+        <image mode="widthFix" src="../../images/eleme.png" style="width:94%" />
       </view>
     </view>
-    
-    <!--<view class="redbag"><view class="eleme">
-      <view class="ele-left">
-        <image mode="widthFix" src="../../images/red1.png" />
-        <view class="ele-right" onTap="oneleBag"><text class="youhuiquan">饿了么优惠券\n</text><text class="sub">大额外卖券天天领</text></view></view></view><view class="eleme"><view class="ele-left"><image mode="widthFix" src="../../images/red2.png" /><view class="ele-right" onTap="onRedBag"><text class="youhuiquan">天天领红包\n</text><text class="sub">每天签到领现金</text></view></view></view></view> -->
+
+    <!--<view class="redbag"><view class="eleme"><view class="ele-left"><image mode="widthFix" src="../../images/red1.png" /><view class="ele-right" onTap="oneleBag"><text class="youhuiquan">饿了么优惠券\n</text><text class="sub">大额外卖券天天领</text></view></view></view><view class="eleme"><view class="ele-left"><image mode="widthFix" src="../../images/red2.png" /><view class="ele-right" onTap="onRedBag"><text class="youhuiquan">天天领红包\n</text><text class="sub">每天签到领现金</text></view></view></view></view> -->
     <view class="way-select-wrap">
       <view class="right">
         <view
@@ -75,39 +72,56 @@
     <!--<component a:if="{{isReady}}" is="dynamic-plugin://2021001131694653/hello"><view>hello</view></component><navigator url="dynamic-plugin://2021001131694653/hello">
       使用navigator组件跳转到插件页面</navigator><button onTap="navToPluginPage">跳转到插件页面</button> -->
 
- <!-- 以下是自营商品 -->
- <block a:if="{{ current == 0 }}">
-    <view a:for="{{ zylist }}" class="goods-top" key="{{item}}" data-ids="{{item.id}}" onTap="onProductDetail">
-      <view class="left">
-        <image mode="widthFix" src={{item.pic}} class="img" />
-      </view>
-      <view class="right-item">
-        <view class="price-content1">
-          <text class="name1">
-            {{item.title}}
-          </text>
+    <!-- 以下是自营商品 -->
+    <block a:if="{{ current == 0 }}">
+      <view
+        a:for="{{ zylist }}"
+        class="goods-top"
+        key="{{item}}"
+        data-ids="{{item.id}}"
+        onTap="onProductDetail"
+      >
+        <view class="left">
+          <image
+            mode="widthFix"
+            src={{item.pic}}
+            lazy-load="{{true}}"
+            class="img"
+          />
         </view>
-        <view class="present-price1">
-          <view>
-            <text class="yuanjia"> ¥{{item.price}}</text>
-            <text class="original-price">
-              ¥{{item.price}}
+        <view class="right-item">
+          <view class="price-content1">
+            <text class="name1">
+              {{item.title}}
             </text>
           </view>
+          <view class="present-price1">
+            <view>
+              <text class="yuanjia"> ¥{{item.price}}</text>
+              <text class="original-price">
+                ¥{{item.price}}
+              </text>
+            </view>
 
-          <view class="goumai">
-            立即购买
+            <view class="goumai">
+              立即购买
+            </view>
           </view>
         </view>
       </view>
-    </view>
-  </block>
-<!-- 以上是自营商品 -->
+    </block>
+    <!-- 以上是自营商品 -->
+
     <view a:for="{{ list }}" key="{{item}}" class="goods-top-item">
       <fanlilist goodlist="{{item}}"></fanlilist>
+
       <!--<view style="height:30rpx"></view> -->
     </view>
-   <view a:if="{{ noProcuct }}" class="nomore">
+
+    <view a:if="{{ loading }}" class="nomore">
+      正在加载中...
+    </view>
+    <view a:if="{{ noProcuct }}" class="nomore">
       暂无商品
     </view>
     <view style="height:20rpx">
