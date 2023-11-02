@@ -3,7 +3,8 @@ import {
   getZYGoodsList,
   getRedBagLink,
   getGoodsNine,
-  getGoodsKol
+  getGoodsKol,
+  getAdvertisement
 
 } from '../api/home';
 import {
@@ -16,7 +17,8 @@ import {
 const app = getApp()
 Page({
   data: {
-    minutetime:null,
+    popdialog: [],
+    minutetime: null,
     noProcuct: false,
     zylist: [],
     loading: false,
@@ -35,9 +37,13 @@ Page({
     clipboardText2: '',
     pageindex: 1,
     totalPage: 0,
-    scrollTop: 0,
+    scrollTop: Number,
+    scrollHeight: Number,
     Verifyflag: false,
-    failCopy: true
+    failCopy: true,
+    backBtn: false,
+    bannerList: [],
+    closeBtn:true
   },
   clearSearch11() {
     this.setData({
@@ -48,10 +54,11 @@ Page({
   waySelectClick(e) {
     let index = e.currentTarget.dataset.index
     this.setData({
-      pageindex: 1
+      pageindex: 1,
+
     })
     if (index == 0) {
-      this.getZYGoodsList(), this.getGoodslist1()
+      this.getGoodslist1()
     }
     if (index == 1) this.getGoodsNine()
     if (index == 2) this.getGoodsKol()
@@ -80,8 +87,6 @@ Page({
           this.setData({
             Verifyflag: app.globalData.Verifyflag
           })
-          console.log(app.globalData.Verifyflag, 'app.globalData.Verifyflag');
-          console.log(this.data.Verifyflag, 'Verifyflag');
 
         }
       }
@@ -113,13 +118,17 @@ Page({
           })
 
         }
+        // 加载完列表之后滚动头条回退50以触发下拉事件
+        my.pageScrollTo({
+          scrollTop: this.data.scrollTop - 50
+        })
+
 
       }
 
     })
   },
   getGoodsKol(pageindex) {
-    console.log(pageindex);
     let obj = {
       p: pageindex ? pageindex : 1,
     }
@@ -127,6 +136,7 @@ Page({
       if (res.code == 200) {
         const items = res.data;
         let page = res.page
+
         if (obj.p === 1) {
           this.setData({
             list: items,
@@ -146,6 +156,11 @@ Page({
           })
 
         }
+        // 加载完列表之后滚动头条回退50以触发下拉事件
+        my.pageScrollTo({
+          scrollTop: this.data.scrollTop - 50
+        })
+
 
       }
 
@@ -157,38 +172,45 @@ Page({
     const result = regex.exec(url);
     return result && result[1];
   },
-  oneleBag() {
-    getRedBagLink().then(res => {
-      if (res.code == 200) {
-        let uri = this.getUrlParameter(res.data, 'page')
-        const url = decodeURIComponent(uri)
-        my.navigateToMiniProgram({
-          appId: '2021001110676437', // 16 位
-          path: url,
-          success: function (res) {
-            console.log(res);
-          },
-          fail: function (err) {
-            console.log(err);
-          }
-        });
+  oneleBag(e) {
+    let link = e.currentTarget.dataset.link
+    if (this.checkLink(link)) {
+      my.navigateTo({
+        url: '/pages/web/web?linkurl=' + link
+      })
+    } else {
+      let uri = this.getUrlParameter(link, 'page')
+      const url = decodeURIComponent(uri)
+      my.navigateToMiniProgram({
+        appId: '2021001110676437', // 16 位
+        path: url,
+        success: function (res) {
+          console.log(res);
+        },
+        fail: function (err) {
+          console.log(err);
+        }
+      });
+    }
 
-      }
-    })
-  },
-  onRedBag() {
-    my.showToast({
-      type: 'none',
-      content: "功能待开放",
-      duration: 2000
-    })
-  },
-  onGuess() {
 
-    // console.log(world,'world')
-    // my.navigateTo({
-    //   url: 'plugin://likes/likes',
-    // });
+    // getRedBagLink().then(res => {
+    //   if (res.code == 200) {
+    //     let uri = this.getUrlParameter(res.data, 'page')
+    //     const url = decodeURIComponent(uri)
+    //     my.navigateToMiniProgram({
+    //       appId: '2021001110676437', // 16 位
+    //       path: url,
+    //       success: function (res) {
+    //         console.log(res);
+    //       },
+    //       fail: function (err) {
+    //         console.log(err);
+    //       }
+    //     });
+
+    //   }
+    // })
   },
   onGoBuy() {
     my.navigateTo({
@@ -208,24 +230,8 @@ Page({
   //     )
   //   })
   // },
-  getZYGoodsList() {
-    getZYGoodsList().then(res => {
-      if (res.code == 200) {
-        this.setData({
-            zylist: res.data
-          }
+ 
 
-        )
-        // this.data.list = this.data.list.concat(this.zylist)
-      }
-    })
-  },
-  onProductDetail(e) {
-    const id = e.currentTarget.dataset.ids
-    my.navigateTo({
-      url: "/pages/productDetail/productDetail?id=" + id
-    })
-  },
   getGoodslist1(pageindex) {
     let obj = {
       p: pageindex ? pageindex : 1,
@@ -244,34 +250,33 @@ Page({
           })
         } else {
           let newItems = JSON.parse(JSON.stringify(this.data.list))
-          for (let i = 0; i < items.length; i++) {
-             newItems.push(items[i])
-          }
+          // for (let i = 0; i < items.length; i++) {
+          //    newItems.push(items[i])
+          // }
+          let arrs = newItems.concat(items)
           this.setData({
-            list: newItems,
+            list: arrs,
             loading: false
+          })
+          // 加载完列表之后滚动头条回退50以触发下拉事件
+          my.pageScrollTo({
+            scrollTop: this.data.scrollTop - 50
           })
 
         }
 
-        // if (this.data.list <= 0) {
-        //   this.setData({
-        //     noProcuct: true
-        //   })
-        // }
-     
+
       }
-      if (res.code == 102) {
-        my.navigateTo({
-          url: "/pages/web/web"
-        })
-      }
+      // if (res.code == 102) {
+      //   my.navigateTo({
+      //     url: "/pages/web/web"
+      //   })
+      // }
 
     })
   },
 
   handleSearch(e) {
-    console.log('search', e.detail.value);
     this.setData({
       search: e.detail.value,
     });
@@ -300,17 +305,17 @@ Page({
         })
         this.setData({
           productObj: res.data,
-          show: true,
+         // show: true,
           isProductLink: true,
         })
 
       }
 
-      if (res.code == 102) {
-        my.navigateTo({
-          url: "/pages/web/web"
-        })
-      }
+      // if (res.code == 102) {
+      //   my.navigateTo({
+      //     url: "/pages/web/web"
+      //   })
+      // }
       my.setClipboard({
         text: ''
       });
@@ -324,6 +329,12 @@ Page({
 
     })
   },
+  onCloseLink(){
+    this.setData({
+      isProductLink: false
+
+    })
+  },
   onClose() {
     my.setClipboard({
       text: ''
@@ -333,19 +344,25 @@ Page({
       clipboardText: ''
 
     })
+    var curDate = new Date();
+    var nextDate = new Date(curDate.getTime() + 24*60*60*1000); //后一天
+    console.log(nextDate);
+    my.setStorageSync({key:"advertimer",data:Date.parse(nextDate)})
+    
   },
+
   lower() {
-    // my.pageScrollTo({
-    //   scrollTop: 500
-    // })
+    my.pageScrollTo({
+      scrollTop: 500
+    })
     const that = this
     that.setData({
-      loading: true,
-      pageindex: that.data.pageindex + 1
+      loading: true
     })
+    that.data.pageindex++
     const listLength = that.data.list.length
-    console.log(that.data.pageindex, that.data.totalPage);
-    if (that.data.pageindex <= that.data.totalPage && listLength < that.data.totalPage) {
+    if (that.data.pageindex * 10 < that.data.totalPage) {
+
       if (that.data.current == 0) {
         that.getGoodslist1(that.data.pageindex)
 
@@ -361,9 +378,9 @@ Page({
 
     } else {
       this.setData({
-        noProcuct: true
+        loading: false
       })
-     my.showToast({
+      my.showToast({
         type: 'none',
         content: '没有更多数据了',
         duration: 2000
@@ -371,13 +388,54 @@ Page({
     }
 
   },
+  onPopLink() {
+    my.navigateTo({
+      url: '/pages/web/web?linkurl=' + this.data.popdialog[0].link
+    })
+
+  },
+
+  getAdvertisement() {
+    getAdvertisement({
+      cid: "1-2"
+    }).then(res => {
+      if (res.code == 200) {
+        this.setData({
+          bannerList: res.data[1],
+          popdialog: res.data[2]
+        })
+        var curDate = new Date().getTime();
+        let timer = my.getStorageSync({key:"advertimer"})
+        console.log(curDate,timer.data); 
+        if (timer.data  == null || curDate >= timer.data) { 
+            this.setData({
+              show: true
+          })
+         }
+
+      }
+    })
+  },
+ 
 
   onLoad(query) {
     app.tokenObtainedCallback = () => {
       this.getGoodslist1()
-      this.getZYGoodsList()
     };
     this.getVerifyStstus()
+    this.getAdvertisement()
+    
+   
+      
+    
+   
+
+    
+
+   
+   
+    
+   
     my.setNavigationBar({
       frontColor: '#000000',
       backgroundColor: '#FFE100'
@@ -448,11 +506,14 @@ Page({
           my.getServerTime({
             success: (res) => {
               let timer = res.time
-              my.setStorageSync({key:"failtimer",data:timer})
-      
+              my.setStorageSync({
+                key: "failtimer",
+                data: timer
+              })
+
             }
-         })
-           
+          })
+
 
         }
 
@@ -477,48 +538,50 @@ Page({
   //       data:count
   //     })
   //   }, 1000)
- 
+
   // },
-  diaplayTime(){
+  diaplayTime() {
     var minute = 1000 * 60;
-    var timer = my.getStorageSync({ key:"failtimer"}) // 拒绝授权的时间戳
-    console.log(timer.data,'timer');
+    var timer = my.getStorageSync({
+      key: "failtimer"
+    }) // 拒绝授权的时间戳
+    console.log(timer.data, 'timer');
     var now = new Date();
     var curtime = now.getTime()
-    console.log(curtime,'curtime');
-    if(timer.data != null){
+    console.log(curtime, 'curtime');
+    if (timer.data != null) {
       var diffValue = curtime - timer.data;
     }
-   
-     console.log(diffValue,'diffValue') 
-    if(diffValue < 0){
+
+    console.log(diffValue, 'diffValue')
+    if (diffValue < 0) {
       return;
     }
-    var minC =diffValue/minute;
-    console.log(minC,'minC') 
-    if(minC > 0){
+    var minC = diffValue / minute;
+    console.log(minC, 'minC')
+    if (minC > 0) {
       this.setData({
-        minutetime:parseInt(minC)
+        minutetime: parseInt(minC)
       })
     }
-     
-    
-    
-
-
-    
-    
 
   },
+  onBackTop() {
+    my.pageScrollTo({
+      scrollTop: 50,
+      duration: 100
+    })
+  },
+
   onShow() {
     this.diaplayTime()
-    console.log(this.data.minutetime,'result');
-   
-    if(this.data.minutetime == null || this.data.minutetime > 15){
+
+    if (this.data.minutetime == null || this.data.minutetime > 15) {
       this.readClipboard()
     }
-   
- },
+
+  },
+
   onHide() {
 
   },
@@ -532,8 +595,57 @@ Page({
   onPullDownRefresh() {
     // 页面被下拉
   },
+  onPageScroll({
+    scrollHeight,
+    scrollTop
+  }) {
+    this.setData({
+      scrollTop: scrollTop,
+      scrollHeight: scrollHeight
+    })
+  },
   onReachBottom() {
-    // 页面被拉到底部
+    var that = this
+    that.setData({
+      backBtn: true,
+      loading: true
+    })
+    that.data.pageindex++
+    const listLength = that.data.list.length
+    if (listLength < 10) {
+      that.setData({
+        // noProcuct: true,
+        loading: false
+      })
+      return
+    }
+    if (that.data.pageindex * 10 < that.data.totalPage) {
+
+      if (that.data.current == 0) {
+        that.getGoodslist1(that.data.pageindex)
+
+        return
+      }
+      if (that.data.current == 1) {
+        that.getGoodsNine(that.data.pageindex)
+        return
+      } else {
+        that.getGoodsKol(that.data.pageindex)
+      }
+
+
+    } else {
+      this.setData({
+        loading: false,
+        noProcuct: true
+      })
+      my.showToast({
+        type: 'none',
+        content: '没有更多数据了',
+        duration: 2000
+      })
+    }
+
   },
   onShareAppMessage() {
     // 返回自定义分享信息

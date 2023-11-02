@@ -60,7 +60,7 @@
   <view class="goods-top-item" data-ids="{{goodlist.id}}" onTap="goodsClicks">
 
     <view class="left">
-      <image mode="widthFix" lazy-load="{{true}}" src={{goodlist.product_img}} class="img" />
+      <image mode="widthFix" lazy-load="{{true}}" src={{goodlist.product_img + "_310x310.jpg_.webp"}} class="img" />
     </view>
     <view class="right">
       <text class="name">

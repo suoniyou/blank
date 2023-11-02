@@ -64,5 +64,12 @@ export const getformid = (data) => {
       data
   })
 }
-
+//推广广告位查询
+export const getAdvertisement = (data) => {
+  return request({
+      url: '/home/position/list',
+      method: 'get',
+      data
+  })
+}
 

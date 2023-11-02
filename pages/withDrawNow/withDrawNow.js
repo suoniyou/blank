@@ -1,11 +1,13 @@
 import {
   getAmount,
-  getAccount,
+  // getAccount,
   getVerifycode,
   bindMobile,
   doWithdraw
 } from '../api/withdraw';
-const base64 = require('../../utils/base64.js')
+import {
+  Base64
+} from "../../utils/base64"
 Page({
   data: {
     inputValue: Number,
@@ -31,6 +33,7 @@ Page({
     this.setData({
       inputValue: value
     })
+    console.log(this.data.inputValue,'inputValue');
 
   },
   getAmount1() {
@@ -150,26 +153,18 @@ Page({
       });
       return;
     }
-    if (!this.data.accountId) {
-      my.showToast({
-        type: 'none',
-        content: "请先绑定收款账号！",
-        duration: 2000
-      });
-      return;
-    }
-    if (!this.data.verifycode) {
-      my.showToast({
-        type: 'none',
-        content: "请填写验证码！",
-        duration: 2000
-      });
-      return;
-    }
+    // if (!this.data.verifycode) {
+    //   my.showToast({
+    //     type: 'none',
+    //     content: "请填写验证码！",
+    //     duration: 2000
+    //   });
+    //   return;
+    // }
     let obj = {
       amount: this.data.inputValue,
-      account: this.data.accountId,
-      verifycode: this.data.verifycode
+     //  account: this.data.accountId,
+      // verifycode: this.data.verifycode
     }
     doWithdraw(obj).then(res => {
       my.showToast({
@@ -177,23 +172,27 @@ Page({
         content: "申请成功",
         duration: 2000
       });
-      this.getAmount()
+      my.switchTab({
+        url:"/pages/withdraw/index"
+      })
+    
+      //this.getAmount1()
     })
   },
-  getAccount() {
-    getAccount().then(res => {
-      if (res.code == 200) {
-        if (res.data.detail) {
-          this.setData({
-            accountId: res.data.id,
-            alipayShow: JSON.parse(res.data.detail).alipay
-          })
+  // getAccount() {
+  //   getAccount().then(res => {
+  //     if (res.code == 200) {
+  //       if (res.data.detail) {
+  //         this.setData({
+  //           accountId: res.data.id,
+  //           alipayShow: JSON.parse(res.data.detail).alipay
+  //         })
 
-        }
-      }
+  //       }
+  //     }
 
-    })
-  },
+  //   })
+  // },
   showBindPhone(e) {
     this.setData({
       editPhone: e.target.dataset.flag,
@@ -261,21 +260,23 @@ Page({
   },
   captchaSuccess: function (result) {
     let stringCode = JSON.stringify(result)
+    console.log(stringCode,'stringCode');
     this.setData({
-      result: base64.encode(stringCode)
+      result: Base64.encode(stringCode)
     })
-    console.log(this.data.result, 'result');
+   
   },
   captchaSuccess1: function (result) {
     let stringCode = JSON.stringify(result)
     this.setData({
-      result: base64.encode(stringCode)
+      result: Base64.encode(stringCode)
     })
+    console.log(this.data.result, 'result');
   },
   captchaSuccess2: function (result) {
     let stringCode = JSON.stringify(result)
     this.setData({
-      result: base64.encode(stringCode)
+      result: Base64.encode(stringCode)
     })
   },
   onReset() {
@@ -312,7 +313,7 @@ Page({
 
   },
   onShow() {
-    this.getAccount()
+    // this.getAccount()
   },
 
 

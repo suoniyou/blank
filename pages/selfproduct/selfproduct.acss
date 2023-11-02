@@ -1,0 +1,81 @@
+.goods-top {
+  width: 93.6vw;
+  display: flex;
+  height: 29vw;
+  background: #fff;
+  border-radius: 3.2vw;
+  margin: 2.133vw auto ;
+  padding: 2.133vw 0;
+}
+/* 自营商品样式 */
+.left {
+  padding-left: 14rpx;
+}
+
+.left .img {
+  width: 28vw;
+  height: 28vw;
+  border-radius: 2.133vw;
+}
+.right-item {
+  /* width: 59vw; */
+  /* display: flex;
+  flex-direction: column; */
+  margin-left: 2.133vw;
+}
+.price-content1 {
+  height: 28px;
+  /* line-height: 30px; */
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+
+.name1 {
+  width: 59vw;
+  /* height: 31px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 3.733vw;
+  font-weight: bold;
+  color: #1A1A1A;
+}
+.present-price1 {
+  margin-top: 48px;
+  color: #FE372B;
+  /* margin-top: 12px; */
+  font-weight: 700;
+  padding-bottom: 10rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.yuanjia {
+  font-size: 32rpx;
+}
+
+.original-price {
+  font-weight: 400;
+  color: #B2B2B2;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
+
+.goumai {
+  width: 68px;
+  height: 26px;
+  text-align: center;
+  background: #FFE100;
+  line-height: 26px;
+  border-radius: 40px;
+  font-size: 26rpx;
+  padding: 3px 6px;
+  font-weight: 600;
+  /* margin-left: 30px; */
+  color: #1A1A1A;
+}
+
+
+

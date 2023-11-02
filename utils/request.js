@@ -49,7 +49,7 @@ export function request(config) {
         }
 
 
-        // resolve(res.data)
+        resolve(res.data)
         my.hideLoading()
       },
       fail: (err) => {

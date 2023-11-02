@@ -30,7 +30,7 @@
         <image class='next-icon' mode="scaleToFill" src="../../images/grzx_icon_more.png" />
       </view>
     </view> -->
-    <view class="user-phone-box base-box">
+    <!-- <view class="user-phone-box base-box">
       <view a:if="{{userPhone}}">
         <view class="input-wrap1 input-line">
           <view class="user-lable">手机号</view>
@@ -65,9 +65,9 @@
       </view>
       <view>
       </view>
-    </view>
+    </view> -->
     <button onTap="submitWithdraw" class="withdraw-okay-btn">确认提现</button>
-    <dialog
+    <!-- <dialog
       show="{{show}}"
       title="{{editPhone ? '修改手机号':'绑定手机号'}}"
       showPhoneBtn="{{true}}"
@@ -132,6 +132,6 @@
           <button form-type="submit" class="pop-btn pop-okay">确认</button>
         </view>
       </form>
-    </dialog>
+    </dialog> -->
   </view>
 </view>

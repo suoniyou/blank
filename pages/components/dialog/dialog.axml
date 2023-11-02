@@ -1,5 +1,5 @@
-<view class="hrbbcf_pages">
-  <view a:if="{{show}}" class="mask" onTap="clickMask"></view>
+<view class="hrbbcf_pages" disable-scroll={{true}}>
+  <view a:if="{{show}}" class="mask" catchtap="clickMask" ></view>
   <view a:if="{{show}}" class="modal-wrapper">
     <view class="modal-content">
       <!-- style="height:{{modalHeight}};width:{{modalWidth}}" -->

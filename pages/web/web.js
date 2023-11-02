@@ -18,7 +18,12 @@ Page({
       this.setData({
         url: query.url
       })
-      console.log(query.authUrl,'已经打开webview的h5链接');
+      return
+    }
+    if(query.linkurl){
+      this.setData({
+        url: query.linkurl
+      })
       return
     }
     else {

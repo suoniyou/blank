@@ -10,7 +10,9 @@
         </view>
         <view class="right">
           <view class="status">
-            {{item.status}}
+            <text a:if="{{item.status == 1 }}">已审核</text>
+            <text a:if="{{ item.status == 0 }}">未审核</text>
+            <text a:if="{{ item.status == 2 }}">已拒绝</text>
           </view>
         </view>
       </view>

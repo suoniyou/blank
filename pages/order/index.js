@@ -138,6 +138,7 @@ Page({
     // 页面被下拉
   },
   onReachBottom() {
+    console.log("1111");
     // 页面被拉到底部
   },
   onShareAppMessage() {

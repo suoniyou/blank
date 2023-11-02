@@ -1,7 +1,9 @@
 <view>
   <view class="gopay">
-    <text class="amount">¥{{productPrice}}\n</text>
-    <text>{{productTitle}}</text>
+    <view>
+      <text class="amount">¥{{productPrice}}\n</text>
+    <view class="productTitle">{{productTitle}}</view>
+  </view>
     <!-- <text class="paytime">
       付款剩余时间
       <text style="color:#FF3212">00:{{timer}}:00</text>
