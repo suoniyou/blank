@@ -118,6 +118,11 @@ Page({
     this.getzyOrderlist()
     // 页面加载
     console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
+
+    my.setNavigationBar({
+      frontColor: '#000000',
+      backgroundColor: '#FFE100'
+    })
   },
   onReady() {
     // 页面加载完成

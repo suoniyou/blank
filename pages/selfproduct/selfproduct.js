@@ -7,7 +7,7 @@ Page({
     totalPage: 0,
     noProcuct: false,
     loading: false,
-    scrollTop:0
+    scrollTop: 0
   },
   getZYGoodsList(pageindex) {
     let obj = {
@@ -32,10 +32,10 @@ Page({
             zylist: arrs,
             loading: false
           })
-            // 加载完列表之后滚动头条回退50以触发下拉事件
-            my.pageScrollTo({
-              scrollTop: this.data.scrollTop - 50
-            })
+          // 加载完列表之后滚动头条回退50以触发下拉事件
+          my.pageScrollTo({
+            scrollTop: this.data.scrollTop - 50
+          })
 
 
         }
@@ -48,7 +48,7 @@ Page({
     })
   },
   onPageScroll({
- scrollTop
+    scrollTop
   }) {
     this.setData({
       scrollTop: scrollTop,
@@ -63,6 +63,11 @@ Page({
   },
   onLoad() {
     this.getZYGoodsList()
+
+    my.setNavigationBar({
+      frontColor: '#000000',
+      backgroundColor: '#FFE100'
+    })
   },
   onReachBottom() {
     var that = this

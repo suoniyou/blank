@@ -265,6 +265,16 @@ Page({
       })
       this.getTaoSearch(query.search)
     }
+    // my.ap.openURL({
+    //   url: 'https://uland.huimai88.com/r.html', // 请将 url 替换为有效的页面地址
+    //   success: (res) => {
+    //     console.log('openURL success', res)
+    //   },
+    //   fail: (err) => {
+    //     console.log('openURL success', err)
+    //   }
+    // });
+    
 
   },
 

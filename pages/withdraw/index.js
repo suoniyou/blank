@@ -69,6 +69,11 @@ Page({
   },
   onLoad(query) {
     this.funVerifyflag()
+
+    my.setNavigationBar({
+      frontColor: '#000000',
+      backgroundColor: '#FFE100'
+    })
     // 页面加载
     console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
 

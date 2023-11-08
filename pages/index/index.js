@@ -281,7 +281,12 @@ Page({
       search: e.detail.value,
     });
   },
+ceshi(){
+  my.navigateTo({
+    url: '/pages/searchPage/searchPage'
+  })
 
+},
   clearSearch() {
     my.navigateTo({
       url: '/pages/searchPage/searchPage?search=' + this.data.search
@@ -344,10 +349,9 @@ Page({
       clipboardText: ''
 
     })
-    var curDate = new Date();
-    var nextDate = new Date(curDate.getTime() + 24*60*60*1000); //后一天
+    var nextDate = new Date().toLocaleDateString();
     console.log(nextDate);
-    my.setStorageSync({key:"advertimer",data:Date.parse(nextDate)})
+    my.setStorageSync({key:"advertimer",data:nextDate})
     
   },
 
@@ -404,11 +408,11 @@ Page({
           bannerList: res.data[1],
           popdialog: res.data[2]
         })
-        var curDate = new Date().getTime();
+        var curDate = new Date().toLocaleDateString();
         let timer = my.getStorageSync({key:"advertimer"})
-        console.log(curDate,timer.data); 
-        if (timer.data  == null || curDate >= timer.data) { 
-            this.setData({
+        // console.log(curDate,timer.data); 
+        if (timer.data  == null || curDate != timer.data) { 
+            this.setData({ 
               show: true
           })
          }

@@ -10,6 +10,9 @@
   <view class="top">
 
   </view>
+  <!-- <view onTap="ceshi">
+    测试
+  </view> -->
   <view class="header">
     <view class="search-input">
       <view class="search-outer">
