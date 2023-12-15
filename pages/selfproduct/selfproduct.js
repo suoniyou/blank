@@ -68,6 +68,7 @@ Page({
       frontColor: '#000000',
       backgroundColor: '#FFE100'
     })
+    
   },
   onReachBottom() {
     var that = this

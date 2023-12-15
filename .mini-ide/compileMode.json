@@ -65,6 +65,19 @@
       "page": "pages/withdrawRecord/withdrawRecord",
       "launchMode": "common",
       "pageQuery": ""
+    },
+    {
+      "title": "pages/productDetail/productDetail",
+      "page": "pages/productDetail/productDetail",
+      "launchMode": "common",
+      "pageQuery": "id=19",
+      "query": ""
+    },
+    {
+      "title": "pages/pageShare/pageShare",
+      "page": "pages/pageShare/pageShare",
+      "launchMode": "common",
+      "pageQuery": ""
     }
   ]
 }

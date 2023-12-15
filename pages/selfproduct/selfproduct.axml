@@ -1,4 +1,5 @@
 <view style="padding-top:2rpx">
+  <image mode="widthFix" src="../../images/ziying.png" style="width:100%" />
   <view
       a:for="{{ zylist }}"
       class="goods-top"

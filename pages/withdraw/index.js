@@ -62,10 +62,14 @@ Page({
   },
 
   funVerifyflag() {
-    this.setData({
-      Verifyflag: app.globalData.Verifyflag
-    })
-    //console.log(this.data.Verifyflag, 'Verifyflag');
+    let code1 = my.getStorageSync({key:"code1"})
+    // console.log(code1.data);
+    if(code1.data == 1){
+      this.setData({
+        Verifyflag:true
+      })
+    }
+
   },
   onLoad(query) {
     this.funVerifyflag()

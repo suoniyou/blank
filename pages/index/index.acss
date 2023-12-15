@@ -426,9 +426,9 @@
 }
 
 .name {
-  width: 253px;
-  padding-bottom: 10px;
-  line-height: 20px;
+  width: 260px;
+  height: 32px;
+  line-height: 32px;
   font-size: 3.733vw;
   font-weight: bold;
   color: #1A1A1A;
@@ -473,6 +473,8 @@
 
 .zimai-left {
   display: flex;
+  /* padding-top: 10px; */
+  /* padding-left: 10px; */
 }
 
 .price-left {

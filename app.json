@@ -12,7 +12,8 @@
     "pages/Address/Address",
     "pages/goToPay/goToPay",
     "pages/paySucess/paySucess",
-    "pages/selfproduct/selfproduct"
+    "pages/selfproduct/selfproduct",
+    "pages/pageShare/pageShare"
   ],
   "window": {
     "defaultTitle": "福利鸭"
@@ -33,9 +34,15 @@
       },
       {
         "pagePath": "pages/selfproduct/selfproduct",
-        "name": "自营商品",
+        "name": "小鸭自营",
         "icon": "images/shopcart.png",
         "activeIcon": "images/activeshopcart.png"
+      },
+      {
+        "pagePath": "pages/pageShare/pageShare",
+        "name": "分享赚",
+        "icon": "images/share.png",
+        "activeIcon": "images/activeshare.png"
       },
       {
         "pagePath": "pages/order/index",

@@ -1,0 +1,147 @@
+<view style="padding-top:2rpx">
+  <image mode="widthFix" src="../../images/sharepic.png" style="width:100%"/>
+  <view
+    a:for="{{ zylist }}"
+    class="goods-top"
+    key="{{item}}"
+    data-ids="{{item.id}}"
+    onTap="onProductDetail"
+  >
+    <view class="left">
+      <image
+        mode="widthFix"
+        src={{item.show_picture}}
+        lazy-load="{{true}}"
+        class="img"
+      />
+    </view>
+    <view class="right-item">
+      <view class="price-content1">
+        <text class="name1">
+          {{item.zy_goods_title}}
+        </text>
+      </view>
+      <view class="present-price1">
+        <view>
+          <text class="yuanjia"> ¥{{item.sku_min_price}}</text>
+          <view class="original-price">
+            <image mode="widthFix" src="../../images/money.png" style="width:30rpx" />
+            <text style="color:#1A1A1A;line-height: 54rpx;"> 佣金 {{item.default_ratio}}%
+            </text>
+
+          </view>
+        </view>
+
+        <view class="goumai" onTap="shareBtn" data-item={{item}}>
+            分享赚¥{{item.pre_fee}}
+         </view>
+
+
+      </view>
+    </view>
+  </view>
+  <!-- 以下是签约弹窗 -->
+  <popup show={{ signingPopup }} onclose={{ onSigningClose }}>
+    <view class="sign-content">
+      <view class="closebtn" onTap="onSigningClose">
+        <icon type="clear" size="20" />
+     </view>
+       <view class="sign-title">
+        税筹签约说明
+       
+      </view>
+      <view class="sign-main">
+        尊敬的用户：
+        为了确保您在参与福利鸭分享赚钱的时候能顺利领取佣金，并协助您依法履行税务义务，支付宝方引入了税筹签约流程。请您理解，接收税筹签约是激励发放的前提条件。这一过程将使得您获得的佣金激励在符合相关税法规定的同时，能够及时获取佣金激励。
+        注意事项：
+        1、展示的分享赚金额为预估税前收益，实际收益由佣金比例和用户实际支付金额决定，预估佣金=佣金比例*支付金额。
+        2、实际提现金额将扣除6%税费。
+        3、签约后，我们将按照国家税法规定代扣缴税款。
+        税筹签约主体为支付宝指定的第三方服务商，签约过程简单快捷，且不会对您产生过多负担。推广途径须遵守相关法律法规，感谢您的理解与支持。请点击下方按钮开始签约。
+      </view>
+      <view class="sign-btn">
+      <view class="sign-refuse" onTap="onSigningClose">
+        拒绝
+      </view>
+      <view class="sign-assign" onTap="goSign">
+        去签约
+      </view>
+       </view>
+
+    </view>
+
+  </popup>
+  <popup show={{ showpopop }} onclose={{ onclose }}>
+    <view class="popuContent">
+      <view onTap="onclose" class="closebtn1">
+        <icon type="clear" size="20" class="onclose" />
+      </view>
+      <view class="goods-detail-n">
+        <view class="goods-left">
+          <image mode="widthFix" src="{{show_picture}}" />
+
+        </view>
+        <view class="goods-right">
+          <text class="goods-title-n">{{zy_goods_title}}</text>
+          <text class="goods-price-n">\n¥{{sku_min_price}}</text>
+        </view>
+        <view>
+        </view>
+      </view>
+      <view class="yongjin">
+        <image mode="widthFix" src="../../images/money.png" style="width:30rpx" />
+        <text> 佣金:{{default_ratio}}%</text>
+        <text style="padding-left:20rpx">预计收入:¥{{pre_fee}}</text>
+
+      </view>
+      <view class="sharetext">
+        <text>分享文案</text>
+        <view class="wenan">
+          {{shareText}}
+          <view class="copybtnview">
+            <view>
+            </view>
+            <view class="copybtn" onTap="copyBtn">
+              复制文案
+            </view>
+
+          </view>
+        </view>
+      </view>
+      <view class="sharepic">
+        <text>分享图片</text>
+        <view class="createimages">
+          <image mode="widthFix" src="../../images/pic.jpg" />
+          <view>
+            <button type="primary" size="mini" onTap="saveImage" class="saveImgBtn" loading ={{isloading}}>
+              生成图片
+            </button>
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </popup>
+  <popup show={{ showpopopImg }} onclose={{ oncloseImg }} position="bottom">
+    <view class="saveimage-bg">
+      <image mode="widthFix" src="{{popupPic}}" style="width:100%"/>
+      <!-- <canvas id="canvas" type="2d" onReady="onCanvasReady" width="1200" height="1700"> -->
+      <!-- </canvas> -->
+    </view>
+    <view class="imagebtn" onTap="saveImagePhone">
+      <view class="button-save">
+        <icon type="download" size="20" class="icon" color="#1A1A1A" style="height: 66rpx;" />
+        保存图片到手机
+      </view>
+      <!--<button size="default" type="primary">保存图片到手机</button> -->
+    </view>
+  </popup>
+
+</view>
+<view a:if="{{ loading }}" class="nomore">
+  正在加载中...
+</view>
+<view a:if="{{ noProcuct }}" class="nomore">
+  暂无商品
+</view>
+

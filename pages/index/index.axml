@@ -40,7 +40,7 @@
         视频教程 >
       </view>
     </view>
-    <view a:if="{{ !Verifyflag }}" class="jisufan">
+    <view a:if="{{ !Verifyflag}}" class="jisufan">
       <view>
         <image mode="widthFix" src="../../images/jisufan.png" class="jisufan-iamge" />
         <text>开通极速返后，即买即返</text>
@@ -82,7 +82,7 @@
       使用navigator组件跳转到插件页面</navigator><button onTap="navToPluginPage">跳转到插件页面</button> -->
 
   <view a:for="{{ list }}" key="{{item}}" class="goods-top-item">
-    <fanlilist goodlist="{{item}}"></fanlilist>
+    <fanlilist goodlist="{{item}}" currenttime={{currenttime}}></fanlilist>
   </view>
 
   <view a:if="{{ loading }}" class="nomore">
@@ -96,7 +96,6 @@
 
   </view>
   <!--<view class="good-list"><view a:for="{{ goodsList }}" key="{{item}}"><fanli-bottom-list goods={{item}}></fanli-bottom-list></view></view> -->
-
   <dialog
     show="{{show}}"
     title=''
@@ -104,8 +103,9 @@
     closeBtn="closeBtn"
     onClose="onClose"
     style="z-index:0"
+
   >
-    <view a:if="{{ popdialog }}" style="z-index:0">
+    <view  style="z-index:0">
       <view class="activity" onTap="onPopLink">
         <image mode="widthFix" src="{{popdialog[0].img}}" />
       </view>

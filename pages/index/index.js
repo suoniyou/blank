@@ -1,9 +1,12 @@
 import {
+  formatMsToDate
+} from '../../utils/formatTime';
+import {
   getGoodslist,
   getZYGoodsList,
   getRedBagLink,
   getGoodsNine,
-  getGoodsKol,
+  getSpecialGoods,
   getAdvertisement
 
 } from '../api/home';
@@ -14,6 +17,7 @@ import {
 import {
   getTaoSearch
 } from '../api/searchPage';
+
 const app = getApp()
 Page({
   data: {
@@ -32,7 +36,7 @@ Page({
     isProductLink: false,
     productObj: {},
     search: '',
-    titleArr: ['精选优惠', '9.9包邮', '主播推荐'],
+    titleArr: ['福利秒杀', '精选优惠', '9.9包邮'],
     current: 0,
     clipboardText2: '',
     pageindex: 1,
@@ -43,7 +47,9 @@ Page({
     failCopy: true,
     backBtn: false,
     bannerList: [],
-    closeBtn:true
+    closeBtn: true,
+    currenttime: '',
+    countdown: ''
   },
   clearSearch11() {
     this.setData({
@@ -58,10 +64,10 @@ Page({
 
     })
     if (index == 0) {
-      this.getGoodslist1()
+      this.getSpecialGoods()
     }
-    if (index == 1) this.getGoodsNine()
-    if (index == 2) this.getGoodsKol()
+    if (index == 1) this.getGoodslist1()
+    if (index == 2) this.getGoodsNine()
     this.setData({
       current: index
     })
@@ -79,20 +85,7 @@ Page({
 
     })
   },
-  getVerifyStstus() {
-    getVerify().then(res => {
-      if (res.code == 200) {
-        if (res.data == 1) {
-          app.globalData.Verifyflag = true
-          this.setData({
-            Verifyflag: app.globalData.Verifyflag
-          })
 
-        }
-      }
-    })
-
-  },
   getGoodsNine(pageindex) {
     let obj = {
       p: pageindex ? pageindex : 1,
@@ -128,11 +121,23 @@ Page({
 
     })
   },
-  getGoodsKol(pageindex) {
+  getSpecialGoods(pageindex) {
+    my.getServerTime({
+      success: (res) => {
+        let timer = res.time
+        this.setData({
+          currenttime: timer
+        })
+        console.log(timer, '111');
+        // console.log(1702548054 * 1000 - timer);
+
+      }
+    })
     let obj = {
       p: pageindex ? pageindex : 1,
+      platform: 2
     }
-    getGoodsKol(obj).then(res => {
+    getSpecialGoods(obj).then(res => {
       if (res.code == 200) {
         const items = res.data;
         let page = res.page
@@ -230,7 +235,7 @@ Page({
   //     )
   //   })
   // },
- 
+
 
   getGoodslist1(pageindex) {
     let obj = {
@@ -281,12 +286,12 @@ Page({
       search: e.detail.value,
     });
   },
-ceshi(){
-  my.navigateTo({
-    url: '/pages/searchPage/searchPage'
-  })
+  ceshi() {
+    my.navigateTo({
+      url: '/pages/searchPage/searchPage'
+    })
 
-},
+  },
   clearSearch() {
     my.navigateTo({
       url: '/pages/searchPage/searchPage?search=' + this.data.search
@@ -310,7 +315,7 @@ ceshi(){
         })
         this.setData({
           productObj: res.data,
-         // show: true,
+          // show: true,
           isProductLink: true,
         })
 
@@ -334,7 +339,7 @@ ceshi(){
 
     })
   },
-  onCloseLink(){
+  onCloseLink() {
     this.setData({
       isProductLink: false
 
@@ -351,8 +356,11 @@ ceshi(){
     })
     var nextDate = new Date().toLocaleDateString();
     console.log(nextDate);
-    my.setStorageSync({key:"advertimer",data:nextDate})
-    
+    my.setStorageSync({
+      key: "advertimer",
+      data: nextDate
+    })
+
   },
 
   lower() {
@@ -368,15 +376,17 @@ ceshi(){
     if (that.data.pageindex * 10 < that.data.totalPage) {
 
       if (that.data.current == 0) {
-        that.getGoodslist1(that.data.pageindex)
+        that.getSpecialGoods(that.data.pageindex)
+
 
         return
       }
       if (that.data.current == 1) {
-        that.getGoodsNine(that.data.pageindex)
+        that.getGoodslist1(that.data.pageindex)
+
         return
       } else {
-        that.getGoodsKol(that.data.pageindex)
+        that.getGoodsNine(that.data.pageindex)
       }
 
 
@@ -393,9 +403,25 @@ ceshi(){
 
   },
   onPopLink() {
-    my.navigateTo({
-      url: '/pages/web/web?linkurl=' + this.data.popdialog[0].link
-    })
+    let link = this.data.popdialog[0].link
+    if (this.checkLink(link)) {
+      my.navigateTo({
+        url: '/pages/web/web?linkurl=' + link
+      })
+    } else {
+      let uri = this.getUrlParameter(link, 'page')
+      const url = decodeURIComponent(uri)
+      my.navigateToMiniProgram({
+        appId: '2021001110676437', // 16 位
+        path: url,
+        success: function (res) {
+          console.log(res);
+        },
+        fail: function (err) {
+          console.log(err);
+        }
+      });
+    }
 
   },
 
@@ -408,38 +434,52 @@ ceshi(){
           bannerList: res.data[1],
           popdialog: res.data[2]
         })
-        var curDate = new Date().toLocaleDateString();
-        let timer = my.getStorageSync({key:"advertimer"})
-        // console.log(curDate,timer.data); 
-        if (timer.data  == null || curDate != timer.data) { 
-            this.setData({ 
-              show: true
+        if (!this.data.popdialog && typeof (this.data.popdialog) == "undefined") {
+          this.setData({
+            show: false
           })
-         }
+        } else {
+          var curDate = new Date().toLocaleDateString();
+          let timer = my.getStorageSync({
+            key: "advertimer"
+          })
+          // console.log(curDate,timer.data); 
+          if (timer.data == null || curDate != timer.data) {
+            this.setData({
+              show: true
+            })
+          }
 
+        }
       }
     })
+
   },
- 
+
 
   onLoad(query) {
-    app.tokenObtainedCallback = () => {
-      this.getGoodslist1()
+   app.tokenObtainedCallback = () => {
+      this.getSpecialGoods()
+
     };
-    this.getVerifyStstus()
+    let code1 = my.getStorageSync({
+      key: "code1"
+    })
+    // console.log(code1.data);
+    if (code1.data == null) {
+      this.setData({
+        Verifyflag: true
+      })
+    } else if (code1.data == 1) {
+      this.setData({
+        Verifyflag: true
+      })
+    }
+
+
+
     this.getAdvertisement()
-    
-   
-      
-    
-   
 
-    
-
-   
-   
-    
-   
     my.setNavigationBar({
       frontColor: '#000000',
       backgroundColor: '#FFE100'
@@ -626,15 +666,15 @@ ceshi(){
     if (that.data.pageindex * 10 < that.data.totalPage) {
 
       if (that.data.current == 0) {
-        that.getGoodslist1(that.data.pageindex)
-
+        that.getSpecialGoods(that.data.pageindex)
         return
       }
       if (that.data.current == 1) {
-        that.getGoodsNine(that.data.pageindex)
+        that.getGoodslist1(that.data.pageindex)
+
         return
       } else {
-        that.getGoodsKol(that.data.pageindex)
+        that.getGoodsNine(that.data.pageindex)
       }
 
 

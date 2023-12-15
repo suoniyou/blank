@@ -1,7 +1,10 @@
 import {
   getGoodsZl,
   getformid
-} from '../../../api/home'
+} from '../../../api/home';
+import {
+  countEndTime
+} from '../../../../utils/formatTime';
 Component({
   mixins: [],
   data: {
@@ -10,22 +13,21 @@ Component({
   },
   props: {
     goodlist: data => console.log(data, 'ss'),
-    //   goodlist: {
-    //     type: Object,
-    //     default: () => {
-    //         return {}
-    //     }
-    // }
+    currenttime: ''
   },
+ 
   didMount() {
+  
+
     //this.setData({goodlist:this.props.goodlist})
 
   },
-  didUpdate() {},
+  didUpdate() {
+  
+  },
   didUnmount() {},
   methods: {
     getGoodsZls(id) {
-      console.log('2222');
       getGoodsZl({
         id: id,
         tbs: 1
@@ -47,21 +49,21 @@ Component({
           // })
 
         }
-       
-         if (res.code == 102) {
+
+        if (res.code == 102) {
           console.log("11112");
           var res = my.getStorageSync({
             key: "token"
           })
-           my.ap.openURL({
-              url: 'https://uland.huimai88.com/r.html?redirect=' + encodeURIComponent('https://oauth.m.taobao.com/authorize?response_type=code&client_id=34030873&redirect_uri=https://test.huimai88.com/user/user/publisher&state=' + res.data), // 请将 url 替换为有效的页面地址
-              success: (res) => {
-                console.log('openURL success', res)
-              },
-              fail: (err) => {
-                console.log('openURL success', err)
-              }
-            })
+          my.ap.openURL({
+            url: 'https://uland.huimai88.com/r.html?redirect=' + encodeURIComponent('https://oauth.m.taobao.com/authorize?response_type=code&client_id=34030873&redirect_uri=https://test.huimai88.com/user/user/publisher&state=' + res.data), // 请将 url 替换为有效的页面地址
+            success: (res) => {
+              console.log('openURL success', res)
+            },
+            fail: (err) => {
+              console.log('openURL success', err)
+            }
+          })
 
           // my.navigateTo({
           //   url: "/pages/web/web"
@@ -99,15 +101,15 @@ Component({
 
       })
     },
+    onSellOut(){
+      // my.showToast({
+      //   content:'已售罄'
+      // })
+    },
     goodsClicks(e) {
       console.log(e)
       const id = e.currentTarget.dataset.ids
       this.getGoodsZls(id)
-
-
-
-
-
     }
 
 

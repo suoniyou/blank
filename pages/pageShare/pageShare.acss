@@ -1,0 +1,342 @@
+.goods-top {
+  width: 93.6vw;
+  display: flex;
+  height: 29vw;
+  background: #fff;
+  border-radius: 3.2vw;
+  margin: 2.133vw auto ;
+  padding: 2.133vw 0;
+}
+.saveImgBtn{
+  color: #1A1A1A;
+}
+.popuContent{
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-top-left-radius: 3.2vw;
+  border-top-right-radius: 3.2vw;
+  padding:0 15rpx 15rpx 15rpx;
+  position: relative;
+}
+.goods-detail-n{
+  width: 70vw;
+  display: flex;
+  align-items: center;
+  padding-top: 40rpx;
+}
+.goods-left{
+  width: 20vw;
+  height: 20vw;
+  border-radius: 1vw;
+  padding-left: 14rpx;
+}
+
+.goods-left image {
+  width: 20vw;
+  height: 20vw;
+  border-radius: 2.133vw;
+}
+.goods-right{
+  margin-left: 30rpx;
+}
+.goods-title-n{
+  width: 57vw;
+  height: 78rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 3.733vw;
+  font-weight: bold;
+  color: #1A1A1A;
+  line-height: 40rpx;
+
+}
+.goods-price-n{
+  color: #FE372B;
+  font-size: 32rpx;
+  font-weight: bold;
+
+}
+.yongjin{
+  width: 70vw;
+  font-weight: bold;
+  color: #1A1A1A;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+  line-height: 30px;
+}
+.yongjin image{
+   vertical-align: middle;
+   margin-right: 10rpx;
+}
+.sharetext{
+  width: 90vw;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+.sharetext text{
+  font-weight: bold;
+  color: #1A1A1A;
+  font-size: 28rpx;
+}
+.sharepic{
+  width: 90vw;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+}
+.createimages{
+  border: 2rpx solid #979797;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin-top: 16rpx;
+  width: 94%;
+  text-align: center;
+}
+.createimages button{
+  background-color: #FFE100;
+  color: #1A1A1A;
+  border-color: #FFE100;
+}
+.createimages image{
+    width: 45%;
+}
+.sharepic text{
+  font-weight: bold;
+  color: #1A1A1A;
+  font-size: 28rpx;
+}
+.copybtnview{
+  display: flex;
+  justify-content: space-between;
+}
+.wenan{
+  border: 2rpx solid #979797;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+}
+.copybtn{
+  width: 132rpx;
+  height: 53rpx;
+  text-align: center;
+  line-height: 53rpx;
+  background: #FFE100;
+  border-radius: 10rpx;
+  color: #1A1A1A;
+  font-size: 24rpx;
+}
+.onclose{
+  text-align: right;
+  padding: 10rpx 20rpx;
+}
+#canvas{
+  width: 100%;
+  height: 1100rpx;
+  align-self: flex-start
+}
+.saveimage-bg{
+
+}
+.goods-image image{
+  width:100%
+}
+.goods-detail-copy{
+  padding: 10rpx;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+}
+.copyimg-left text{
+  width: 50vw;
+  /* height: 31px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 3.2vw;
+  font-weight: bold;
+  color: #1A1A1A;
+}
+.copyimg-price{
+  color: #FE372B;
+  font-size: 4.5vw;
+  font-weight: bold;
+  line-height: 60rpx;
+
+}
+.copyimg-name{
+  font-size: 22rpx;
+  font-weight:normal;
+}
+.apiay-text{
+  color: #006EEB;
+  font-size: 18rpx;
+  margin-top: 10rpx;
+}
+.changan{
+    color: #666666;
+    font-size: 24rpx;
+    line-height: 40rpx;
+}
+
+.imagebtn{
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 20rpx;
+}
+.icon{
+    color: #1A1A1A;
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+.button-save{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #FFE100;
+  border-color: #FFE100;
+  color: #1A1A1A;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 10rpx;
+}
+
+
+/* 自营商品样式 */
+.left {
+  padding-left: 14rpx;
+}
+
+.left .img {
+  width: 28vw;
+  height: 28vw;
+  border-radius: 2.133vw;
+}
+.right-item {
+  /* width: 59vw; */
+  /* display: flex;
+  flex-direction: column; */
+  margin-left: 2.133vw;
+}
+.price-content1 {
+  height: 28px;
+  /* line-height: 30px; */
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+
+.name1 {
+  width: 59vw;
+  /* height: 31px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 3.733vw;
+  font-weight: bold;
+  color: #1A1A1A;
+}
+.present-price1 {
+  margin-top: 40rpx;
+  color: #FE372B;
+  /* margin-top: 12px; */
+  font-weight: 700;
+  padding-bottom: 10rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.yuanjia {
+  font-size: 38rpx;
+}
+
+.original-price {
+  color: #B2B2B2;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #FE372B;
+}
+.original-price image{
+  vertical-align: middle;
+  margin-right: 8rpx;
+  margin-top: -3rpx;
+
+}
+
+.goumai {
+  width: 68px;
+  /* height: 26px; */
+  text-align: center;
+  background: #FFE100;
+  line-height: 35rpx;
+  border-radius: 10px;
+  font-size: 26rpx;
+  padding: 12rpx 4rpx;
+  font-weight: 600;
+  margin-top: 18rpx;
+  color: #1A1A1A;
+}
+.sign-content{
+  padding: 20rpx;
+  position: relative;
+}
+.sign-title{
+  font-size: 30rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 55rpx;
+  padding: 10rpx 0;
+}
+.sign-main{
+  font-size: 26rpx;
+  line-height: 44rpx;
+}
+.sign-btn{
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}
+.sign-refuse{
+  width: 48%;
+  border:2rpx solid #FFE100;
+  color:#FFE100;
+  border-radius: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  height: 66rpx;
+  line-height: 66rpx;
+}
+.sign-assign{
+  width: 48%;
+  border:2rpx solid #FFE100;
+  background-color: #FFE100;
+  color: #fff;
+  border-radius: 80rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+.closebtn{
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+}
+.closebtn1{
+  position: absolute;
+  top: 20rpx;
+  right: 40rpx;
+}
+
+
+

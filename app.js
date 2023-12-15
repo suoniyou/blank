@@ -3,7 +3,9 @@ App({
     host: 'https://test.huimai88.com',
     token: '',
     authCode: '',
-    Verifyflag:false
+    Verifyflag: false,
+    code1: '',
+    sharePagePath:''
   },
   getAuthCodefun() {
     return new Promise((resolve, reject) => {
@@ -35,35 +37,29 @@ App({
           authcode: authCode
         },
         success(res1) {
-          if(res1.data.code == 200){
-            console.log(res1)
+          if (res1.data.code == 200) {
             resolve(res1.data.data.token)
-          }else{
+          } else {
             my.showToast({
               type: 'none',
               content: res1.data.msg,
-              duration:3000
-              
+              duration: 3000
+
             });
-            
+
           }
-        
+
 
 
         },
-        fail(err){
+        fail(err) {
           console.log(err)
           reject(err)
-        } 
+        }
       })
 
 
     })
-
-
-
-
-
   },
   async allfun() {
     try {
@@ -74,7 +70,14 @@ App({
         key: 'token',
         data: token
       })
+      const code1 = await this.getVerifyStstus()
+      my.setStorageSync({
+        key: 'code1',
+        data: code1
+      })
       this.triggerTokenObtained();
+
+
 
     } catch (err) {
 
@@ -86,22 +89,53 @@ App({
       this.tokenObtainedCallback();
     }
   },
+  //支付宝急速返授权状态检查
+  getVerifyStstus() {
+    let token = my.getStorageSync({
+      key: "token"
+    })
+    return new Promise((resolve, reject) => {
+      my.request({
+        // 你的服务器地址
+        url: 'https://test.huimai88.com/home/zhima/verify',
+        method: 'GET',
+        header: {
+          "x-token": token.data
+        },
+
+        success(res1) {
+          if (res1.data.code == 200) {
+            resolve(res1.data.data)
+          } else {
+
+
+          }
+        },
+        fail(err) {
+          console.log(err)
+          reject(err)
+        }
+      })
+    })
+
+  },
 
   onLaunch(options) {
-   
-    // let token = my.getStorageSync({
-    //   key: 'token'
-    // });
-    // console.log(token.data, 'token');
-    // if (!token.data && token.data == null) {
-       
-    // }
-
-
+    this.allfun()
 
   },
   onShow(options) {
-    this.allfun()
+   // console.log(options.query.signed_state); 
+    console.log(options);
+    //this.globalData.sharePagePath = options.path //分享赚页面签约返回参数
+   if(options.query){
+      my.setStorageSync({
+        key: 'sharePagePath',
+        data: options.query.signed_state
+      })
+    }
+   
+    // this.allfun()
 
     // 从后台被 scheme 重新打开
     // options.query == {number:1}

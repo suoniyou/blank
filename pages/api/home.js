@@ -1,5 +1,5 @@
 import { request } from '../../utils/request'
- // 首页特殊活动商品列表
+ //福利秒杀
 export const getSpecialGoods = (data) => {
   return request({
       url: '/home/index/specialgoods',
@@ -24,14 +24,8 @@ export const getGoodsNine = (data) => {
       data
   })
 }
-//主播推荐
-export const getGoodsKol = (data) => {
-  return request({
-      url: '/home/index/kol',
-      method: 'get',
-      data
-  })
-}
+
+
 // 商品转链
 export const getGoodsZl = (data) => {
   return request({

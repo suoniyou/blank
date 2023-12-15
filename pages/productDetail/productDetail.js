@@ -81,8 +81,11 @@ Page({
 
   },
   onLoad(query) {
-    console.log(query.id);
+
     this.getDetail(query.id)
     this.getBaseInfo(query.id)
   },
+  onShow(options){
+    my.hideBackHome()
+  }
 });
