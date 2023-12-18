@@ -36,13 +36,11 @@ export function request(config) {
         if (res.data.code == 200) {
           resolve(res.data)
         } else if (res.data.code == 101) {
-          my.switchTab({
-            url: '/pages/index/index'
-          })
-        } else {
+            app.allfun()
+        } else  {
           my.showToast({
             type: 'none',
-            content: res.data.msg,
+            content: res.data.msg ? res.data.msg:'系统异常',
             duration: 3000
 
           });

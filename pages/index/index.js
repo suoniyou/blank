@@ -458,10 +458,18 @@ Page({
 
 
   onLoad(query) {
-   app.tokenObtainedCallback = () => {
-      this.getSpecialGoods()
+    let token = my.getStorageSync({
+      key: "token"
+    })
+    //第一次进首页须先请求token再请求接口
+    app.tokenObtainedCallback = () => {
+    this.getSpecialGoods()
 
     };
+    if(token.data){
+      this.getSpecialGoods()//有token
+    }
+ 
     let code1 = my.getStorageSync({
       key: "code1"
     })

@@ -39,10 +39,12 @@ App({
         success(res1) {
           if (res1.data.code == 200) {
             resolve(res1.data.data.token)
-          } else {
+            
+          }
+           else {
             my.showToast({
               type: 'none',
-              content: res1.data.msg,
+              content: '登陆异常',
               duration: 3000
 
             });
@@ -70,13 +72,9 @@ App({
         key: 'token',
         data: token
       })
-      const code1 = await this.getVerifyStstus()
-      my.setStorageSync({
-        key: 'code1',
-        data: code1
-      })
+      this.getVerifyStstus()
       this.triggerTokenObtained();
-
+     
 
 
     } catch (err) {
@@ -84,7 +82,7 @@ App({
     }
 
   },
-  triggerTokenObtained() {
+ triggerTokenObtained() {
     if (this.tokenObtainedCallback) {
       this.tokenObtainedCallback();
     }
@@ -94,38 +92,54 @@ App({
     let token = my.getStorageSync({
       key: "token"
     })
-    return new Promise((resolve, reject) => {
-      my.request({
-        // 你的服务器地址
-        url: 'https://test.huimai88.com/home/zhima/verify',
-        method: 'GET',
-        header: {
-          "x-token": token.data
-        },
+   if(token.data){
+    my.request({
+      // 你的服务器地址
+      url: 'https://test.huimai88.com/home/zhima/verify',
+      method: 'GET',
+      header: {
+        "x-token": token.data
+      },
 
-        success(res1) {
-          if (res1.data.code == 200) {
-            resolve(res1.data.data)
-          } else {
+      success(res1) {
+        if (res1.data.code == 200) {
+          my.setStorageSync({
+            key: 'code1',
+            data: res1.data.data
+          })
+     
+         // resolve(res1.data.data)
+
+         } else {
 
 
-          }
-        },
-        fail(err) {
-          console.log(err)
-          reject(err)
         }
-      })
+      },
+      fail(err) {
+        console.log(err)
+        reject(err)
+      }
     })
+   }
 
   },
 
   onLaunch(options) {
-    this.allfun()
+    let token = my.getStorageSync({key:'token'})
+    if(!token.data){
+      this.allfun()
+      
+    }else{
+      this.triggerTokenObtained();
+      this.getVerifyStstus()  
+     
+    }
+   
+   
+  
 
   },
   onShow(options) {
-   // console.log(options.query.signed_state); 
     console.log(options);
     //this.globalData.sharePagePath = options.path //分享赚页面签约返回参数
    if(options.query){

@@ -30,7 +30,7 @@ Component({
     getGoodsZls(id) {
       getGoodsZl({
         id: id,
-        tbs: 1
+        // tbs: 1
       }).then(res => {
         console.log(res.code);
         if (res.code == 200) {
