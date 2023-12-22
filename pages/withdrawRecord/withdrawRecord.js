@@ -14,7 +14,6 @@ Page({
     })
   
     this.withdrawRecords(this.data.page)
-    console.log(this.data.page,'1212');
   },
   withdrawRecords(page){
     withdrawRecords({p:page}).then(res=>{

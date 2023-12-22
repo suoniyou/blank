@@ -46,7 +46,7 @@ Page({
           ["list[" + i + "].checked"]: 0
           })
         }
-        console.log(this.data.list[i].checked)
+    
       }
       getDefaultAccount({id:e.detail.value}).then(res=>{
         if(res.code == 200){
@@ -114,7 +114,6 @@ Page({
 
 
     }).catch(err => {
-      console.log('err', err);
     })
 
   },

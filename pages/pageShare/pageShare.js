@@ -4,7 +4,8 @@ import {
   getShareZL
 } from '../api/pageShare';
 import {
-  preventDuplicateClicks
+  preventDuplicateClicks,
+  navigateToMiniProgramScheme
 } from "../../utils/formatTime"
 const app = getApp()
 Page({
@@ -30,24 +31,51 @@ Page({
     sku_min_price: '',
     zy_goods_title: '',
     isloading: false,
-    popupPic: ''
+    popupPic: '',
+    guided_code: '',
+    selfLoading:false
   },
   onProductDetail() {
 
   },
-  getShareZL(taskid) {
-    getShareZL({
+  async getShareZL(taskid) {
+    await getShareZL({
       task_template_id: taskid
     }).then(res => {
       if (res.code == 200) {
         this.setData({
           shareText: res.data.guided_share_code,
           shareImage: res.data.guided_code_img,
+          guided_code: res.data.guided_code
 
         })
 
       }
     })
+  },
+
+  async selfBtn(e) {
+    this.setData({
+      selfLoading:true
+    })
+    let item = e.currentTarget.dataset.item
+    let task_template_id = item.task_template_id
+    await this.getShareZL(task_template_id)
+    let selfLoading = this.data.selfLoading
+    // 调用示例
+    var scheme = this.data.guided_code;
+    navigateToMiniProgramScheme({
+      scheme,selfLoading,
+      success:(res) => {
+        this.setData({
+          selfLoading:res.selfLoading
+        })
+      },
+      fail: (err) => my.alert({
+        title: 'navigateToMiniProgramScheme failed',
+        content: JSON.stringify(err)
+      }),
+    });
   },
   shareBtn(e) {
     let that = this
@@ -79,15 +107,12 @@ Page({
 
       },
       fail: function (err) {
-        console.log(err);
+           
       }
     });
 
-
-
-
-
   },
+
   onclose() {
     this.setData({
       showpopop: false
@@ -102,10 +127,10 @@ Page({
     my.setClipboard({
       text: this.data.shareText,
       success: function (res) {
-        console.log(res, '复制成功');
+        
       },
       fail: function (err) {
-        console.log(err);
+           
       },
     });
     my.getClipboard({
@@ -114,10 +139,10 @@ Page({
           content: "复制成功",
           duration: 2000
         })
-        console.log(res);
+            
       },
       fail: function (err) {
-        console.log(err);
+           
       }
     });
 
@@ -141,7 +166,7 @@ Page({
       },
 
       success: function (res) {
-        console.log(res);
+            
         that.setData({
           showpopopImg: true,
           popupPic: res.data.data,
@@ -208,10 +233,10 @@ Page({
           showpopopImg: false,
           isloading: false
         })
-        console.log('saveImageToPhotosAlbum 调用成功', res);
+       
       },
       fail(err) {
-        console.log('saveImageToPhotosAlbum 调用失败', err);
+        
         that.setData({
           showpopopImg: false,
           isloading: false
@@ -224,7 +249,7 @@ Page({
               authType: 'PHOTO',
               complete(res) {
                 if (res.shown) {
-                  console.log('已展示权限引导');
+                 
                 } else {
                   console.error('保存图片失败: ', '请在系统设置中为支付宝并开启相册权限', JSON.stringify(err));
                 }
@@ -243,10 +268,10 @@ Page({
     my.ap.openURL({
       url: 'https://uland.huimai88.com/r.html?redirect=' + encodeURIComponent(this.data.urlLink), // 请将 url 替换为有效的页面地址
       success: (res) => {
-        console.log('openURL success', res)
+        
       },
       fail: (err) => {
-        console.log('openURL success', err)
+        
       }
     });
 
@@ -266,11 +291,11 @@ Page({
     })
   },
   bindPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
+    
 
   },
   bindObjPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
+    
 
   },
   getTaskList(pageindex) {
@@ -311,12 +336,20 @@ Page({
 
     })
   },
+  onShareAppMessage() {
+    return {
+      title: '福利鸭',
+      desc: '分享赚',
+      path: 'pages/pageShare/pageShare',
+    };
+  },
+
+
   onShow() {
- let options = my.getLaunchOptionsSync();
+    let options = my.getLaunchOptionsSync();
     let pathh = my.getStorageSync({
       key: "sharePagePath"
     })
-    console.log('pathh', pathh.data);
     if (pathh.data == 1) {
       this.onSigningClose()
     }

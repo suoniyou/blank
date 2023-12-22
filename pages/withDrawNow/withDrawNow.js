@@ -33,7 +33,7 @@ Page({
     this.setData({
       inputValue: value
     })
-    console.log(this.data.inputValue,'inputValue');
+  
 
   },
   getAmount1() {
@@ -107,7 +107,7 @@ Page({
       this.setData({
         ["verCodeBtn" + n]: "倒计时" + t + "s"
       })
-      console.log(n, this.data["verCodeBtn" + n]);
+     
       const interval = setInterval(() => {
         if (t > 0) {
           t--;
@@ -135,7 +135,7 @@ Page({
         });
       },
       fail: (res) => {
-        console.log(res);
+            
       },
     })
   },
@@ -214,7 +214,6 @@ Page({
   },
   onSubmit(e) {
     let phoneData = e.detail.value
-    console.log('phoneData', phoneData);
     if (!/^1[3|4|5|6|7|8|9][0-9]\d{8}$/.test(phoneData.mobile_new)) {
       my.showToast({
         type: 'none',
@@ -260,7 +259,6 @@ Page({
   },
   captchaSuccess: function (result) {
     let stringCode = JSON.stringify(result)
-    console.log(stringCode,'stringCode');
     this.setData({
       result: Base64.encode(stringCode)
     })
@@ -271,7 +269,6 @@ Page({
     this.setData({
       result: Base64.encode(stringCode)
     })
-    console.log(this.data.result, 'result');
   },
   captchaSuccess2: function (result) {
     let stringCode = JSON.stringify(result)
@@ -288,7 +285,6 @@ Page({
 
   },
   onLoad(query) {
-    console.log(query, '90');
     this.getAmount1()
     this.setData({
       captchaId: '8e89f401d4ce4dd72312165d6e3c7677',

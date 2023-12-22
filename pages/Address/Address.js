@@ -31,7 +31,6 @@ Page({
 
 
     }
-    console.log(this.data.defaultSku);
     this.setData({
       itemContent: JSON.parse(decodeURIComponent(query.itemContent))
 
@@ -44,10 +43,9 @@ Page({
         that.setData({
           result: res.result
         })
-        console.log(res.result);
       },
       fail: function (err) {
-        console.log(err);
+           
       }
     });
 

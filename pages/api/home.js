@@ -2,7 +2,7 @@ import { request } from '../../utils/request'
  //福利秒杀
 export const getSpecialGoods = (data) => {
   return request({
-      url: '/home/index/specialgoods',
+      url: '/home/index/alispecialgoods',
       method: 'get',
       data
   })

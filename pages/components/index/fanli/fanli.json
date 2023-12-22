@@ -1,4 +1,9 @@
-{
+{  "usingComponents":{
+  "countdown-component": "../../countDown/countDown"
+},
+  
   "component": true,
   "styleIsolation": "apply-shared"
+
+
 }

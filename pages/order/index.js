@@ -1,6 +1,7 @@
 import {
   getOrderlist,
-  getzyOrderlist
+  getzyOrderlist,
+  getShareOrdeList
 } from '../api/order';
 Page({
   data: {
@@ -21,12 +22,13 @@ Page({
       }
     ],
     currentIndex: 0,
-    tabcurrentlist: ['返利订单', '自营订单'],
+    tabcurrentlist: ['返利订单', '自营订单','分享赚'],
     tabcurrent: 0,
     orderList: [],
     zyOrderList: [],
     pageindex: 1,
-    totalPage: 0
+    totalPage: 0,
+    shareList:[]
   },
   changeTab(e) {
     let that = this
@@ -71,13 +73,23 @@ Page({
       }
     })
   },
+  getShareOrdeList(){
+    getShareOrdeList().then(res=>{
+      if(res.code == 200){
+        this.setData({
+          shareList:res.data
+        })
+
+      }
+    })
+  },
   goToPay(e) {
     let tradeno = e.currentTarget.dataset.tradeno
     my.tradePay({
       // 调用统一收单交易创建接口（alipay.trade.create），获得返回字段支付宝交易号 trade_no
       tradeNO: tradeno,
       success: res => {
-        console.log(res, 'res');
+       
         if (res.resultCode == 9000) {
           my.navigateTo({
             url: '/pages/paySucess/paySucess?code=' + res.resultCode
@@ -99,7 +111,7 @@ Page({
       pageindex: that.data.pageindex + 1
     })
     const listLength = that.data.zyOrderList.length
-    console.log(that.data.pageindex, that.data.totalPage);
+   
     if (that.data.pageindex <= that.data.totalPage && listLength < that.data.totalPage) {
       that.getzyOrderlist(that.data.pageindex)
 
@@ -116,6 +128,7 @@ Page({
   onLoad(query) {
     this.getOrderlist(0)
     this.getzyOrderlist()
+    this.getShareOrdeList()
     // 页面加载
     console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
 
@@ -143,7 +156,7 @@ Page({
     // 页面被下拉
   },
   onReachBottom() {
-    console.log("1111");
+   
     // 页面被拉到底部
   },
   onShareAppMessage() {

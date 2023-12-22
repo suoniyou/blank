@@ -10,9 +10,8 @@
   <view class="top">
 
   </view>
-  <!-- <view onTap="ceshi">
-    测试
-  </view> -->
+  <!--<view onTap="ceshi">
+    测试</view> -->
   <view class="header">
     <view class="search-input">
       <view class="search-outer">
@@ -36,9 +35,9 @@
   <view class="body">
     <view class="fanli-step">
       <image mode="widthFix" src="../../images/fanyong-bg.png" />
-      <view class="fanyong-top">
+      <!-- <view class="fanyong-top">
         视频教程 >
-      </view>
+      </view> -->
     </view>
     <view a:if="{{ !Verifyflag}}" class="jisufan">
       <view>
@@ -69,7 +68,7 @@
         onTap="waySelectClick"
         data-index="{{index}}"
       >
-        <text>{{item}}\n</text>
+        <text style="font-weight:bold">{{item}}\n</text>
         <text class="{{current == index ?'active':'items'}}" style="position:absolute;
            bottom:-20rpx;
            left:40rpx">
@@ -77,12 +76,41 @@
       </view>
     </view>
   </view>
-  <!-- 使用 component 组件 渲染插件组件 hello。hello为插件plugin.json中对外暴露的组件 -->
-  <!--<component a:if="{{isReady}}" is="dynamic-plugin://2021001131694653/hello"><view>hello</view></component><navigator url="dynamic-plugin://2021001131694653/hello">
-      使用navigator组件跳转到插件页面</navigator><button onTap="navToPluginPage">跳转到插件页面</button> -->
-
   <view a:for="{{ list }}" key="{{item}}" class="goods-top-item">
-    <fanlilist goodlist="{{item}}" currenttime={{currenttime}}></fanlilist>
+    <fanlilist goodlist="{{item}}" current ={{ current }} ref="goodsClicks"></fanlilist>
+   <view a:if="{{ current == 0 }}" class="miaosha-content">
+      <view class="price-content1">
+        <view class="present-price1">
+          <view>
+            <text class="yuanjia"> ¥{{item.product_price}}</text>
+            <text class="original-price">
+              ¥{{item.product_price_origin}}
+            </text>
+          </view>
+
+
+          <view a:if="{{ item.reserve > 0}}" class="goumai" onTap="onBuyNow" data-ids={{item.id}}>
+            立即抢
+            <!--<button size="default" type="primary" formType="submit" class="hiddenbtn"></button> -->
+
+          </view>
+          <view a:elif="{{ activeEnd  }}" class="shouqing">
+            活动结束</view>
+          <view a:else class="shouqing">
+            已售罄
+          </view>
+        </view>
+      </view>
+      <view class="flash-sale">
+        <block a:if="{{item.end_time !== 0}}">
+        <image mode="widthFix" src="/images/sudu.png" />
+        <text class="time-sale">
+          <count-down itemtime={{item.end_time}} onCounterPlusOne="testy"></count-down>
+
+        </text>
+      </block>
+      </view>
+    </view>
   </view>
 
   <view a:if="{{ loading }}" class="nomore">
@@ -103,16 +131,14 @@
     closeBtn="closeBtn"
     onClose="onClose"
     style="z-index:0"
-
   >
-    <view  style="z-index:0">
+    <view style="z-index:0">
       <view class="activity" onTap="onPopLink">
         <image mode="widthFix" src="{{popdialog[0].img}}" />
       </view>
 
     </view>
-    <!--<view a:if="{{ isProductLink }}">
-</view> -->
+    <!--<view a:if="{{ isProductLink }}"></view> -->
     <!--<block a:else><view class="dialog-top"><view class="flex-warp"><view class="left-big-box"><text class="left-text">智能精准识别\n</text><text class="left-bottom-text">是否搜索以下商品</text></view><image mode="widthFix" src="../../images/quan.png" /></view></view><view class="padding-content"><view class="clipboard">
             {{clipboardText}}</view><view class="ali-wrap-btns"><button form-type="submit" class="pop-btn pop-okay" onTap="onJumpSearch">
               点击搜券</button></view></view></block> -->

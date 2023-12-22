@@ -6,7 +6,7 @@
       onTap="changeTabOrderName"
       data-index="{{index}}"
     >
-      {{item}}
+  {{item}}
     </text>
   </view>
   <block a:if="{{ tabcurrent == 0 }}">
@@ -77,7 +77,8 @@
                   size="mini"
                   onTap="goToPay"
                   data-tradeno={{item.trade_no}}
-                >去支付
+                >
+                  去支付
                 </button>
               </text>
               <text a:if="{{  item.status == 1}}" class="status-con">已付款</text>
@@ -113,6 +114,41 @@
         </view>
       </scroll-view>
     </view>
+
+  </block>
+  <block a:if="{{ tabcurrent == 2 }}">
+    <view class="order-list-query-goods">
+      <view a:for="{{ shareList }}" class="order-info">
+        <view class="order-status-wrap">
+          <text class="order-number">订单号：{{ item.order_no }}</text>
+          <text a:if="{{  item.task_status == 0}}" class="status-con">有佣金</text>
+          <text a:if="{{  item.task_status == 1}}" class="status-con">无佣金</text>
+        </view>
+        <view class="goods-main">
+          <image
+            mode="scaleToFill"
+            src="{{item.sku.sku_pic}}"
+            class="picture"
+          />
+          <view class="goods-right-box">
+            <view class="goods-name">{{ item.title }}</view>
+            <view class="sub-title">
+              <text>
+                {{ item.sku.name}}
+                <text style="margin-left:12px">*{{item.num}}</text></text>
+              <text class="price-name">佣金:¥{{item.commission_fee}}</text>
+            </view>
+            <!--<view class="price-main-box"><view class="price-item"><view class="price-num">
+              ￥<text>{{ item.pay_amount }}</text></view><view class="price-name">支付金额</view></view></view> -->
+          </view>
+        </view>
+        <view class="order-pay-time">支付时间：{{ item.pay_time }}</view>
+     </view>
+      <view a:if="{{shareList.length === 0}}" class="nodata">
+        <view class="datatip">暂无数据</view>
+      </view>
+    </view>
+
 
   </block>
 </view>

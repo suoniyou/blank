@@ -9,11 +9,15 @@
   background: #fff;
 
 }
-
+.order-class text:first-child{
+  margin-left: 0;
+}
 .order-class text {
-  width: 120px;
-  margin-left: 12px;
+  width: 130px;
+  margin-left: 5px;
   padding: 4rpx 8rpx;
+  border: 2rpx soild #979797;
+  border-radius: 4px;
 }
 
 .tabactive {

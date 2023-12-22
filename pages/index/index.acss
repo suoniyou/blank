@@ -115,6 +115,7 @@
   /* height: 100%; */
   width: 93.6vw;
   margin: 0 auto;
+  position: relative;
 }
 
 .fanli-step {
@@ -438,6 +439,13 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
+.miaosha-content{
+  width: 62%;
+  position: absolute;
+  left: 33vw;
+  bottom: 30rpx;
+
+}
 
 .present-price {
   display: flex;
@@ -454,7 +462,34 @@
   width: 50%;
   font-size: 50rpx;
 }
-
+.goumai{
+  width: 68px;
+  height: 26px;
+  text-align: center;
+  background: #FFE100;
+  line-height: 26px;
+  border-radius: 40px;
+  font-size: 26rpx;
+  padding: 3px 6px;
+  font-weight: 600;
+  /* margin-top: 20rpx; */
+  color: #1A1A1A;
+  position: relative;
+  }
+  .shouqing{
+    width: 68px;
+    height: 26px;
+    text-align: center;
+  background: #F2F2F2;
+  line-height: 26px;
+  border-radius: 40px;
+  font-size: 26rpx;
+  padding: 3px 6px;
+  font-weight: 600;
+  /* margin-top: 26rpx; */
+  color: #1A1A1A;
+  position: relative;
+  }
 .yigoumai {
   width: 50%;
   color: #b2b2b2;
@@ -543,5 +578,50 @@
 }
 .yuanjia {
   font-size: 32rpx;
+}
+.price-content1 {
+  /* height: 28px; */
+  /* margin-top: 12px; */
+  line-height: 30px;
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+.present-price1{
+  color: #FE372B;
+  /* margin-top: 12px; */
+  font-weight: 700;
+  padding-bottom: 5rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.original-price {
+  font-weight: 400;
+  color: #B2B2B2;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+  font-size: 22rpx;
+}
+
+
+.yuanjia {
+  font-size: 38rpx;
+}
+
+.flash-sale{
+  width: 40vw;
+  /* height: 40rpx; */
+
+
+}
+.flash-sale image{
+  width: 28rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+.time-sale{
+  font-size: 24rpx;
+  color: #1A1A1A;
+  font-weight: normal;
 }
 

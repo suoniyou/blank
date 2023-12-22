@@ -1,6 +1,4 @@
-import {
-  formatMsToDate
-} from '../../utils/formatTime';
+
 import {
   getGoodslist,
   getZYGoodsList,
@@ -36,7 +34,7 @@ Page({
     isProductLink: false,
     productObj: {},
     search: '',
-    titleArr: ['福利秒杀', '精选优惠', '9.9包邮'],
+    titleArr: ['低至0元', '9.9包邮'],
     current: 0,
     clipboardText2: '',
     pageindex: 1,
@@ -48,14 +46,37 @@ Page({
     backBtn: false,
     bannerList: [],
     closeBtn: true,
-    currenttime: '',
-    countdown: ''
+    countdown: '',
+    activeEnd:false
   },
   clearSearch11() {
     this.setData({
       search: ''
     })
 
+  },
+  goodsClicks(ref){
+    //  (ref);
+    this.BuyNow = ref
+  },
+  onBuyNow(e){
+   //let id = e.currentTarget.dataset.ids
+   this.BuyNow.goodsClicks(e)
+
+  },
+  testy(val){
+    // (val,'父组件');
+    if(val == "00:00:00"){
+      this.setData({
+        activeEnd:true
+      })
+
+    }else{
+      this.setData({
+        activeEnd:false
+      })
+    }
+    
   },
   waySelectClick(e) {
     let index = e.currentTarget.dataset.index
@@ -66,8 +87,8 @@ Page({
     if (index == 0) {
       this.getSpecialGoods()
     }
-    if (index == 1) this.getGoodslist1()
-    if (index == 2) this.getGoodsNine()
+    //if (index == 1) this.getGoodslist1()
+    if (index == 1) this.getGoodsNine()
     this.setData({
       current: index
     })
@@ -122,17 +143,6 @@ Page({
     })
   },
   getSpecialGoods(pageindex) {
-    my.getServerTime({
-      success: (res) => {
-        let timer = res.time
-        this.setData({
-          currenttime: timer
-        })
-        console.log(timer, '111');
-        // console.log(1702548054 * 1000 - timer);
-
-      }
-    })
     let obj = {
       p: pageindex ? pageindex : 1,
       platform: 2
@@ -161,6 +171,7 @@ Page({
           })
 
         }
+    
         // 加载完列表之后滚动头条回退50以触发下拉事件
         my.pageScrollTo({
           scrollTop: this.data.scrollTop - 50
@@ -190,10 +201,10 @@ Page({
         appId: '2021001110676437', // 16 位
         path: url,
         success: function (res) {
-          console.log(res);
+          
         },
         fail: function (err) {
-          console.log(err);
+          
         }
       });
     }
@@ -207,10 +218,10 @@ Page({
     //       appId: '2021001110676437', // 16 位
     //       path: url,
     //       success: function (res) {
-    //         console.log(res);
+    //             
     //       },
     //       fail: function (err) {
-    //         console.log(err);
+    //            
     //       }
     //     });
 
@@ -355,7 +366,7 @@ Page({
 
     })
     var nextDate = new Date().toLocaleDateString();
-    console.log(nextDate);
+   
     my.setStorageSync({
       key: "advertimer",
       data: nextDate
@@ -381,11 +392,12 @@ Page({
 
         return
       }
-      if (that.data.current == 1) {
-        that.getGoodslist1(that.data.pageindex)
+      // if (that.data.current == 1) {
+      //   that.getGoodslist1(that.data.pageindex)
 
-        return
-      } else {
+      //   return
+      // } 
+      else {
         that.getGoodsNine(that.data.pageindex)
       }
 
@@ -415,10 +427,10 @@ Page({
         appId: '2021001110676437', // 16 位
         path: url,
         success: function (res) {
-          console.log(res);
+          
         },
         fail: function (err) {
-          console.log(err);
+           
         }
       });
     }
@@ -443,7 +455,7 @@ Page({
           let timer = my.getStorageSync({
             key: "advertimer"
           })
-          // console.log(curDate,timer.data); 
+          //  (curDate,timer.data); 
           if (timer.data == null || curDate != timer.data) {
             this.setData({
               show: true
@@ -456,8 +468,8 @@ Page({
 
   },
 
-
   onLoad(query) {
+
     let token = my.getStorageSync({
       key: "token"
     })
@@ -473,7 +485,7 @@ Page({
     let code1 = my.getStorageSync({
       key: "code1"
     })
-    // console.log(code1.data);
+    //  (code1.data);
     if (code1.data == null) {
       this.setData({
         Verifyflag: true
@@ -483,9 +495,6 @@ Page({
         Verifyflag: true
       })
     }
-
-
-
     this.getAdvertisement()
 
     my.setNavigationBar({
@@ -550,7 +559,7 @@ Page({
 
       },
       fail: function (err) {
-        console.log(err);
+           
         my.setClipboard({
           text: ''
         });
@@ -597,20 +606,18 @@ Page({
     var timer = my.getStorageSync({
       key: "failtimer"
     }) // 拒绝授权的时间戳
-    console.log(timer.data, 'timer');
     var now = new Date();
     var curtime = now.getTime()
-    console.log(curtime, 'curtime');
     if (timer.data != null) {
       var diffValue = curtime - timer.data;
     }
 
-    console.log(diffValue, 'diffValue')
+     (diffValue, 'diffValue')
     if (diffValue < 0) {
       return;
     }
     var minC = diffValue / minute;
-    console.log(minC, 'minC')
+    
     if (minC > 0) {
       this.setData({
         minutetime: parseInt(minC)
@@ -677,11 +684,12 @@ Page({
         that.getSpecialGoods(that.data.pageindex)
         return
       }
-      if (that.data.current == 1) {
-        that.getGoodslist1(that.data.pageindex)
+      // if (that.data.current == 1) {
+      //   that.getGoodslist1(that.data.pageindex)
 
-        return
-      } else {
+      //   return
+      // } 
+      else {
         that.getGoodsNine(that.data.pageindex)
       }
 

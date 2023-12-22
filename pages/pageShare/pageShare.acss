@@ -67,6 +67,8 @@
   font-size: 24rpx;
   margin-left: 20rpx;
   line-height: 30px;
+  display: flex;
+  justify-content: space-between;
 }
 .yongjin image{
    vertical-align: middle;
@@ -246,22 +248,31 @@
   font-weight: bold;
   color: #1A1A1A;
 }
+.price-setting{
+  display: inline-flex;
+}
 .present-price1 {
-  margin-top: 40rpx;
+  margin-top: 30rpx;
   color: #FE372B;
   /* margin-top: 12px; */
   font-weight: 700;
   padding-bottom: 10rpx;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
 }
 .yuanjia {
+  margin-right: 20rpx;
   font-size: 38rpx;
+}
+.btn-group{
+  display: inline-flex;
+  justify-content: right;
+  width: 96%;
 }
 
 .original-price {
   color: #B2B2B2;
-  margin-top: 10rpx;
+  /* margin-top: 10rpx; */
   font-size: 24rpx;
   color: #FE372B;
 }
@@ -271,18 +282,44 @@
   margin-top: -3rpx;
 
 }
-
-.goumai {
-  width: 68px;
-  /* height: 26px; */
+.sharefirend{
+  width: 1.32rem;
+  height: 0.53rem;
   text-align: center;
+  line-height: 0.5rem;
   background: #FFE100;
-  line-height: 35rpx;
+  border-radius: 0.1rem;
+  color: #1A1A1A;
+  font-size: 0.24rem;
+  border-color: #FFE100;
+}
+.zimaisheng{
+  width: 76px;
+  height: 80rpx;
+  text-align: center;
+  border-color: #FFE100;
+  background: #FFE100;
+  line-height: 30rpx;
   border-radius: 10px;
   font-size: 26rpx;
-  padding: 12rpx 4rpx;
+  padding: 10rpx 4rpx;
   font-weight: 600;
-  margin-top: 18rpx;
+  margin-top: 2rpx;
+  color: #1A1A1A;
+  margin-right: 20rpx;
+  white-space: normal;
+}
+.goumai {
+  width: 68px;
+  height: 60rpx;
+  text-align: center;
+  background: #FFE100;
+  line-height: 30rpx;
+  border-radius: 10px;
+  font-size: 26rpx;
+  padding: 10rpx 4rpx;
+  font-weight: 600;
+  margin-top: 2rpx;
   color: #1A1A1A;
 }
 .sign-content{

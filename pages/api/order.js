@@ -15,4 +15,12 @@ import { request } from '../../utils/request'
       data
   })
 }
+ //分享赚订单
+ export const getShareOrdeList = (data) => {
+  return request({
+      url: '/home/zhixin/orders',
+      method: 'get',
+      data
+  })
+}
 

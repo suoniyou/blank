@@ -1,5 +1,5 @@
 <view style="padding-top:2rpx">
-  <image mode="widthFix" src="../../images/sharepic.png" style="width:100%"/>
+  <image mode="widthFix" src="../../images/sharepic.png" style="width:100%" />
   <view
     a:for="{{ zylist }}"
     class="goods-top"
@@ -10,7 +10,7 @@
     <view class="left">
       <image
         mode="widthFix"
-        src={{item.show_picture}}
+        src={{item.thumb}}
         lazy-load="{{true}}"
         class="img"
       />
@@ -22,21 +22,30 @@
         </text>
       </view>
       <view class="present-price1">
-        <view>
-          <text class="yuanjia"> ¥{{item.sku_min_price}}</text>
+        <view class="price-setting">
+          <view class="yuanjia"> ¥{{item.sku_min_price}}</view>
           <view class="original-price">
             <image mode="widthFix" src="../../images/money.png" style="width:30rpx" />
-            <text style="color:#1A1A1A;line-height: 54rpx;"> 佣金 {{item.default_ratio}}%
+            <text style="color:#1A1A1A;line-height: 44rpx;"> 佣金 {{item.default_ratio}}%
             </text>
 
           </view>
+       </view>
+       <view class="btn-group">
+        <view class="zimaishengBtn" onTap="selfBtn" data-item={{item}}>
+          <button
+          type="primary"
+           class="zimaisheng"
+          loading={{selfLoading}}
+        >
+        <text a:if="{{ selfLoading ? false:true }}">自买省 ¥{{item.pre_fee}}</text>    
+        </button>
+         
         </view>
-
         <view class="goumai" onTap="shareBtn" data-item={{item}}>
-            分享赚¥{{item.pre_fee}}
-         </view>
-
-
+          分享赚¥{{item.pre_fee}}
+        </view>
+       </view>
       </view>
     </view>
   </view>
@@ -45,10 +54,10 @@
     <view class="sign-content">
       <view class="closebtn" onTap="onSigningClose">
         <icon type="clear" size="20" />
-     </view>
-       <view class="sign-title">
+      </view>
+      <view class="sign-title">
         税筹签约说明
-       
+
       </view>
       <view class="sign-main">
         尊敬的用户：
@@ -60,13 +69,13 @@
         税筹签约主体为支付宝指定的第三方服务商，签约过程简单快捷，且不会对您产生过多负担。推广途径须遵守相关法律法规，感谢您的理解与支持。请点击下方按钮开始签约。
       </view>
       <view class="sign-btn">
-      <view class="sign-refuse" onTap="onSigningClose">
-        拒绝
+        <view class="sign-refuse" onTap="onSigningClose">
+          拒绝
+        </view>
+        <view class="sign-assign" onTap="goSign">
+          去签约
+        </view>
       </view>
-      <view class="sign-assign" onTap="goSign">
-        去签约
-      </view>
-       </view>
 
     </view>
 
@@ -89,10 +98,16 @@
         </view>
       </view>
       <view class="yongjin">
-        <image mode="widthFix" src="../../images/money.png" style="width:30rpx" />
-        <text> 佣金:{{default_ratio}}%</text>
-        <text style="padding-left:20rpx">预计收入:¥{{pre_fee}}</text>
-
+        <view>
+          <image mode="widthFix" src="../../images/money.png" style="width:30rpx" />
+          <text> 佣金:{{default_ratio}}%</text>
+          <text style="padding-left:20rpx">预计收入:¥{{pre_fee}}</text>
+        </view>
+       <view>
+        <!-- <button type="primary" open-type="share" class="sharefirend">
+          分享
+       </button> -->
+       </view>
       </view>
       <view class="sharetext">
         <text>分享文案</text>
@@ -111,9 +126,15 @@
       <view class="sharepic">
         <text>分享图片</text>
         <view class="createimages">
-          <image mode="widthFix" src="../../images/pic.jpg" />
+          <image mode="widthFix" lazy-load="{{true}}" src="../../images/pic.jpg" />
           <view>
-            <button type="primary" size="mini" onTap="saveImage" class="saveImgBtn" loading ={{isloading}}>
+            <button
+              type="primary"
+              size="mini"
+              onTap="saveImage"
+              class="saveImgBtn"
+              loading={{isloading}}
+            >
               生成图片
             </button>
           </view>
@@ -124,9 +145,9 @@
   </popup>
   <popup show={{ showpopopImg }} onclose={{ oncloseImg }} position="bottom">
     <view class="saveimage-bg">
-      <image mode="widthFix" src="{{popupPic}}" style="width:100%"/>
-      <!-- <canvas id="canvas" type="2d" onReady="onCanvasReady" width="1200" height="1700"> -->
-      <!-- </canvas> -->
+      <image mode="widthFix" src="{{popupPic}}"  lazy-load="{{true}}" style="width:100%" />
+      <!--<canvas id="canvas" type="2d" onReady="onCanvasReady" width="1200" height="1700"> -->
+      <!--</canvas> -->
     </view>
     <view class="imagebtn" onTap="saveImagePhone">
       <view class="button-save">
@@ -144,4 +165,3 @@
 <view a:if="{{ noProcuct }}" class="nomore">
   暂无商品
 </view>
-

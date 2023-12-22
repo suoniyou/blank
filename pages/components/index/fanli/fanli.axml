@@ -1,4 +1,3 @@
-<!-- <import-sjs from="../../../../utils/countDown.sjs" name="countDown" /> -->
 <view a:if="{{ goodlist.pict_url }}" class="goods-top-item" onTap="goodsClick">
   <view class="left">
     <image mode="widthFix" src={{goodlist.pict_url}} lazy-load="{{true}}" class="img" />
@@ -58,56 +57,49 @@
 </view>
 
 <!-- 以下是首页福利秒杀 -->
-<!-- <form a:else onSubmit="onSubmit" report-submit="{{true}}"> -->
+<!--<form a:else onSubmit="onSubmit" report-submit="{{true}}"> -->
 
-  <view a:else class="goods-top-item" data-ids="{{goodlist.id}}" onTap="goodsClicks">
-
-    <view class="left">
-      <image mode="widthFix" lazy-load="{{true}}" src={{goodlist.product_img + "_310x310.jpg_.webp"}} class="img" />
-    </view>
-    <view class="right">
-      <text class="name">
-        {{goodlist.product_name}}
-      </text>
-   <view class="price-content1">
-      <view class="present-price1">
-          <view>
-            <text class="yuanjia"> ¥{{goodlist.product_price}}</text>
-            <text class="original-price">
-              ¥{{goodlist.product_price_origin}}
-            </text>
-            <view class="flash-sale">
-              <!-- <image mode="widthFix" src="/images/sudu.png" /> -->
-              <text class="time-sale">
-                <!-- {{countDown.countEndTime(goodlist.end_time * 1000 - currenttime)}} -->
-                
-              </text>
+<view a:else class="goods-top-item">
+  <view class="left">
+    <image
+      mode="widthFix"
+      lazy-load="{{true}}"
+      src={{goodlist.product_img + "_310x310.jpg_.webp"}}
+      class="img"
+    />
+  </view>
+  <view class="right">
+    <text class="name">
+      {{goodlist.product_name}}
+    </text>
+    <view a:if="{{ current !== 0 }}" class="price-content1">
+      <view class="zimai">
+        <view class="zimai-left">
+          <view class="price-left">
+            <view class="lingquan">
+              {{goodlist.coupon_amount}}元券
             </view>
           </view>
-      
-
-          <view class="goumai" a:if="{{ goodlist.reserve > 0}}">
-             立即抢
-            <button size="default" type="primary"  formType="submit" class="hiddenbtn">
-            </button>
-           
+          <view class="price-top">
+            <text class="lifan-left">返</text>
+            <text class="lifan-right">¥{{goodlist.product_fan}}</text>
           </view>
-          <view class="shouqing" a:else>
-             已售罄
-          </view>
-          <view>
-            
-          </view>
-          
-
-
+        </view>
+      </view>
+      <view class="present-price">
+        <view>
+          <text class="yuanjia"> ¥{{goodlist.product_price}}</text>
+          <text class="original-price">
+            ¥{{goodlist.product_price_origin}}
+          </text>
         </view>
 
-
+        <view class="goumai" onTap="goodsClicks" data-ids="{{goodlist.id}}">
+          立即购买
+        </view>
 
       </view>
 
-    </view>
 
-  </view>
-<!-- </form> -->
+    </view>
+    <!--</form> -->

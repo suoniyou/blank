@@ -7,7 +7,7 @@ Page({
 
   },
   onLoad(query) {
-    console.log(query.code,'query.code');
+   
     if(query.code == 9000){
         this.setData({
           failFlag:false
@@ -17,7 +17,7 @@ Page({
         failFlag:true
       })
     }
-    console.log(this.data.failFlag,'failFlag');
+
     let t = 3
     let interval = setInterval(() => {
      this.setData({

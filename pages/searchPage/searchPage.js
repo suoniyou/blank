@@ -109,7 +109,7 @@ Page({
         data: this.data.searchList
       })
       if (res.success) {
-        console.log(res, 'keyword')
+         
       }
     }
 
@@ -124,7 +124,6 @@ Page({
     });
   },
   onKeyworde(e) {
-    console.log(e);
     this.setData({
      inputValue: e.currentTarget.dataset.item,
       searchfalg:true
@@ -147,7 +146,7 @@ Page({
     }
   },
   onPriceSort(e) {
-    console.log(e);
+         
     const index = e.currentTarget.dataset.index
     this.setData({
       // rotate:'rotate(-90deg)',
@@ -187,7 +186,7 @@ Page({
             list: newItems
           })
         }
-        console.log(that.data.list)
+         (that.data.list)
 
 
       }
@@ -213,7 +212,7 @@ Page({
         pageindex: that.data.pageindex += 1
       })
       const listLength = that.data.list.length
-      console.log(that.data.pageindex, that.data.totalPage);
+       (that.data.pageindex, that.data.totalPage);
       if (that.data.pageindex <= that.data.totalPage && listLength < that.data.totalPage) {
         that.getTaoSearch(that.data.inputValue, that.data.currindex, that.data.pageindex)
 
@@ -231,7 +230,7 @@ Page({
   getSystemInfo() {
     my.getSystemInfo({
       success: (res) => {
-        console.log(res, 'res');
+         (res, 'res');
         this.setData({
           systemInfo: res.screenHeight
         })
@@ -251,7 +250,7 @@ Page({
     }
 
 
-    console.log(query);
+     (query);
     if (query.content) {
       this.setData({
         inputValue: query.content
@@ -268,10 +267,10 @@ Page({
     // my.ap.openURL({
     //   url: 'https://uland.huimai88.com/r.html', // 请将 url 替换为有效的页面地址
     //   success: (res) => {
-    //     console.log('openURL success', res)
+    //      ('openURL success', res)
     //   },
     //   fail: (err) => {
-    //     console.log('openURL success', err)
+    //      ('openURL success', err)
     //   }
     // });
     

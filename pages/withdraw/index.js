@@ -45,7 +45,7 @@ Page({
             url: '/pages/web/web?authUrl=' + res.data
           })
         //  app.globalData.Verifyflag = true
-         // console.log('已经授权了,true', app.globalData.Verifyflag);
+         //  ('已经授权了,true', app.globalData.Verifyflag);
         }
 
       }
@@ -63,7 +63,7 @@ Page({
 
   funVerifyflag() {
     let code1 = my.getStorageSync({key:"code1"})
-    // console.log(code1.data);
+    //  (code1.data);
     if(code1.data == 1){
       this.setData({
         Verifyflag:true

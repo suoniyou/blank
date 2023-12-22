@@ -5,6 +5,7 @@ import {
 import {
   Base64
 } from "../../utils/base64"
+const app = getApp()
 Page({
   data: {
     detailImage: Object,
@@ -53,7 +54,7 @@ Page({
     })
   },
   goBuyChange() {
-    console.log(this.data.baseInfo, 'this.data.baseInfo');
+
     const {
       id,
       pic,
@@ -66,7 +67,6 @@ Page({
       pic,
       title
     }
-    console.log(obj, 'this.data.baseInfo');
     my.navigateTo({
       url: '/pages/Address/Address?itemContent=' + encodeURIComponent(JSON.stringify(obj)) + '&skus=' + encodeURIComponent(JSON.stringify(this.data.itemContent)) + '&defaultSku=' + encodeURIComponent(JSON.stringify(this.data.skuList[0]))
     })
@@ -77,14 +77,20 @@ Page({
       current: index,
       itemContent: e.currentTarget.dataset.item
     })
-    console.log(e.currentTarget.dataset.item);
 
   },
   onLoad(query) {
-
-    this.getDetail(query.id)
-    this.getBaseInfo(query.id)
+    let id = app.globalData.goodsId //使用scheme跳转获取到的id
+    if(id){
+      this.getDetail(id)
+      this.getBaseInfo(id)
+    }else{
+      this.getDetail(query.id)
+      this.getBaseInfo(query.id)
+    }
   },
+
+   
   onShow(options){
     my.hideBackHome()
   }

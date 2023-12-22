@@ -5,7 +5,8 @@ App({
     authCode: '',
     Verifyflag: false,
     code1: '',
-    sharePagePath:''
+    sharePagePath:'',
+    goodsId:''
   },
   getAuthCodefun() {
     return new Promise((resolve, reject) => {
@@ -17,7 +18,7 @@ App({
         },
         fail: err => {
           reject(err)
-          console.log('my.getAuthCode 调用失败', err)
+          
         }
 
       });
@@ -55,7 +56,7 @@ App({
 
         },
         fail(err) {
-          console.log(err)
+         
           reject(err)
         }
       })
@@ -116,7 +117,7 @@ App({
         }
       },
       fail(err) {
-        console.log(err)
+        
         reject(err)
       }
     })
@@ -125,6 +126,7 @@ App({
   },
 
   onLaunch(options) {
+    
     let token = my.getStorageSync({key:'token'})
     if(!token.data){
       this.allfun()
@@ -140,14 +142,17 @@ App({
 
   },
   onShow(options) {
-    console.log(options);
+     
     //this.globalData.sharePagePath = options.path //分享赚页面签约返回参数
    if(options.query){
       my.setStorageSync({
         key: 'sharePagePath',
         data: options.query.signed_state
       })
+      this.globalData.goodsId = options.query.id
+      
     }
+    
    
     // this.allfun()
 

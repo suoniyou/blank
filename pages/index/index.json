@@ -2,7 +2,8 @@
   "usingComponents": {
     "fanlilist":"../components/index/fanli/fanli",
     "fanli-bottom-list":"../components/index/fanli-bottom-list/fanli",
-    "dialog":"../components/dialog/dialog"
+    "dialog":"../components/dialog/dialog",
+    "count-down":"../components//countDown/countDown"
    },
   "styleIsolation": "apply-shared",
   "onReachBottomDistance": 50,

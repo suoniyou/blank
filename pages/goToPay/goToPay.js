@@ -16,7 +16,7 @@ Page({
     timer: 15
   },
   radioChange(e) {
-    console.log(e);
+         
 
   },
   goToPay() {
@@ -24,7 +24,7 @@ Page({
       // 调用统一收单交易创建接口（alipay.trade.create），获得返回字段支付宝交易号 trade_no
       tradeNO: this.data.tradeno,
       success: res => {
-        console.log(res, 'res');
+        
         if (res.resultCode == 9000) {
           my.navigateTo({
             url: '/pages/paySucess/paySucess?code=' + res.resultCode
@@ -52,16 +52,14 @@ Page({
 
     }, 1000);
     // clearInterval(interval);
-    console.log(t, );
+     
   },
   onLoad(query) {
-    console.log(query, 'query');
     this.setData({
       productPrice: query.productPrice,
       tradeno: query.tradeno,
       productTitle: query.title
     })
-    console.log(query.productPrice);
 
     // this.onPayTime()
   },
