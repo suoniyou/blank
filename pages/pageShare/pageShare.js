@@ -32,8 +32,7 @@ Page({
     zy_goods_title: '',
     isloading: false,
     popupPic: '',
-    guided_code: '',
-    selfLoading:false
+    guided_code: ''
   },
   onProductDetail() {
 
@@ -55,21 +54,25 @@ Page({
   },
 
   async selfBtn(e) {
-    this.setData({
-      selfLoading:true
-    })
+    my.showLoading({
+      content: '加载中...',
+      success: function(res) {
+        console.log(res);
+        setTimeout(() => {
+          my.hideLoading();
+        }, 2000);
+      },
+      fail: function(err) {
+      }
+    });
     let item = e.currentTarget.dataset.item
     let task_template_id = item.task_template_id
     await this.getShareZL(task_template_id)
-    let selfLoading = this.data.selfLoading
     // 调用示例
     var scheme = this.data.guided_code;
     navigateToMiniProgramScheme({
-      scheme,selfLoading,
-      success:(res) => {
-        this.setData({
-          selfLoading:res.selfLoading
-        })
+      scheme,
+      success: (res) => {
       },
       fail: (err) => my.alert({
         title: 'navigateToMiniProgramScheme failed',
@@ -107,7 +110,7 @@ Page({
 
       },
       fail: function (err) {
-           
+
       }
     });
 
@@ -123,14 +126,15 @@ Page({
       signingPopup: false
     })
   },
+
   copyBtn() {
     my.setClipboard({
       text: this.data.shareText,
       success: function (res) {
-        
+
       },
       fail: function (err) {
-           
+
       },
     });
     my.getClipboard({
@@ -139,13 +143,22 @@ Page({
           content: "复制成功",
           duration: 2000
         })
-            
+
       },
       fail: function (err) {
-           
+        my.showToast({
+          content: "您的支付宝版本过低，请长按全选复制",
+          duration: 2000
+        })
+
       }
     });
 
+  },
+  oncloseImg(){
+    this.setData({
+      showpopopImg: false
+    })
   },
   getImage() {
     let token = my.getStorageSync({
@@ -166,7 +179,7 @@ Page({
       },
 
       success: function (res) {
-            
+
         that.setData({
           showpopopImg: true,
           popupPic: res.data.data,
@@ -233,10 +246,10 @@ Page({
           showpopopImg: false,
           isloading: false
         })
-       
+
       },
       fail(err) {
-        
+
         that.setData({
           showpopopImg: false,
           isloading: false
@@ -249,7 +262,7 @@ Page({
               authType: 'PHOTO',
               complete(res) {
                 if (res.shown) {
-                 
+
                 } else {
                   console.error('保存图片失败: ', '请在系统设置中为支付宝并开启相册权限', JSON.stringify(err));
                 }
@@ -268,10 +281,10 @@ Page({
     my.ap.openURL({
       url: 'https://uland.huimai88.com/r.html?redirect=' + encodeURIComponent(this.data.urlLink), // 请将 url 替换为有效的页面地址
       success: (res) => {
-        
+
       },
       fail: (err) => {
-        
+
       }
     });
 
@@ -291,11 +304,11 @@ Page({
     })
   },
   bindPickerChange(e) {
-    
+
 
   },
   bindObjPickerChange(e) {
-    
+
 
   },
   getTaskList(pageindex) {
@@ -329,11 +342,6 @@ Page({
 
         }
       }
-
-
-
-
-
     })
   },
   onShareAppMessage() {

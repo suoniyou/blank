@@ -26,6 +26,12 @@ Page({
       })
       return
     }
+    if(query.tianmaourl){
+      this.setData({
+        url: query.tianmaourl
+      })
+      return
+    }
     else {
       let res = my.getStorageSync({
         key: "token"

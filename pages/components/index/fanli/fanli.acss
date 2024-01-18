@@ -27,7 +27,7 @@
 
 .name {
   width: 59vw;
-  height: 35px;
+  height: 66rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;

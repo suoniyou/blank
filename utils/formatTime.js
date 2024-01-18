@@ -71,14 +71,14 @@ export function preventDuplicateClicks(){
   }
 };
 // 使用 scheme 跳转小程序
-export function navigateToMiniProgramScheme({ scheme,selfLoading, success, fail }) {
-  var { params, message,selfLoading } = schemeToParams(scheme);
+export function navigateToMiniProgramScheme({ scheme, success, fail }) {
+  var { params, message } = schemeToParams(scheme);
   if (params) {
     my.navigateTo({
       url:'/' + params.path + '?id=' + params.query.id,
     })
-    selfLoading = false
-    success && success( { selfLoading })
+    // selfLoading = false
+    // success && success( { selfLoading })
    //my.navigateToMiniProgram({ ...params, success, fail });
   } else {
     fail && fail({ error: -1, errorMessage: `无效的小程序 scheme ${scheme}: ${message}` });

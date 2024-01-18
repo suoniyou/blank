@@ -15,8 +15,8 @@ Page({
     sortName: '',
     pageindex: 0,
     scrollTop: 0,
-    searchfalg:false,
-    
+    searchfalg: false,
+
     sortsList: [{
         name: '综合',
 
@@ -59,7 +59,7 @@ Page({
   clearSearch() {
     this.setData({
       inputValue: '',
-      searchfalg:false
+      searchfalg: false
     })
 
   },
@@ -67,7 +67,7 @@ Page({
     let arr = this.data.inputValue
     if (arr) {
       this.setData({
-        searchfalg:true
+        searchfalg: true
       })
       this.getTaoSearch(arr)
     } else {
@@ -109,7 +109,7 @@ Page({
         data: this.data.searchList
       })
       if (res.success) {
-         
+
       }
     }
 
@@ -125,8 +125,8 @@ Page({
   },
   onKeyworde(e) {
     this.setData({
-     inputValue: e.currentTarget.dataset.item,
-      searchfalg:true
+      inputValue: e.currentTarget.dataset.item,
+      searchfalg: true
     })
     this.getTaoSearch(e.currentTarget.dataset.item)
 
@@ -146,7 +146,7 @@ Page({
     }
   },
   onPriceSort(e) {
-         
+
     const index = e.currentTarget.dataset.index
     this.setData({
       // rotate:'rotate(-90deg)',
@@ -186,15 +186,24 @@ Page({
             list: newItems
           })
         }
-         (that.data.list)
 
 
       }
-      // if (res.code == 102) {
-      //   my.navigateTo({
-      //     url: "/pages/web/web"
-      //   })
-      // }
+      if (res.code == 102) {
+        var res = my.getStorageSync({
+          key: "token"
+        })
+        my.ap.openURL({
+          url: 'https://uland.huimai88.com/r.html?redirect=' + encodeURIComponent('https://oauth.m.taobao.com/authorize?response_type=code&client_id=34030873&redirect_uri=https://test.huimai88.com/user/user/publisher&state=' + res.data), // 请将 url 替换为有效的页面地址
+          success: (res) => {
+
+          },
+          fail: (err) => {
+
+          }
+        })
+
+      }
 
     })
 
@@ -211,8 +220,7 @@ Page({
       that.setData({
         pageindex: that.data.pageindex += 1
       })
-      const listLength = that.data.list.length
-       (that.data.pageindex, that.data.totalPage);
+      const listLength = that.data.list.length(that.data.pageindex, that.data.totalPage);
       if (that.data.pageindex <= that.data.totalPage && listLength < that.data.totalPage) {
         that.getTaoSearch(that.data.inputValue, that.data.currindex, that.data.pageindex)
 
@@ -224,13 +232,13 @@ Page({
           duration: 2000
         })
       }
-    },300)
+    }, 300)
 
   },
   getSystemInfo() {
     my.getSystemInfo({
       success: (res) => {
-         (res, 'res');
+        (res, 'res');
         this.setData({
           systemInfo: res.screenHeight
         })
@@ -249,8 +257,6 @@ Page({
       })
     }
 
-
-     (query);
     if (query.content) {
       this.setData({
         inputValue: query.content
@@ -260,7 +266,7 @@ Page({
     if (query.search) {
       this.setData({
         inputValue: query.search,
-        searchfalg:true
+        searchfalg: true
       })
       this.getTaoSearch(query.search)
     }
@@ -273,7 +279,7 @@ Page({
     //      ('openURL success', err)
     //   }
     // });
-    
+
 
   },
 

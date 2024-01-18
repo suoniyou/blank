@@ -78,6 +78,24 @@
       "page": "pages/pageShare/pageShare",
       "launchMode": "common",
       "pageQuery": ""
+    },
+    {
+      "title": "福利中心",
+      "page": "pages/welfareCenter/welfareCenter",
+      "launchMode": "common",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/index/index",
+      "page": "pages/position/index",
+      "launchMode": "common",
+      "pageQuery": "id=2"
+    },
+    {
+      "title": "活动页",
+      "page": "pages/positioncopy/index",
+      "launchMode": "common",
+      "pageQuery": "id=14"
     }
   ]
 }

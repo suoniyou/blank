@@ -161,6 +161,12 @@
   margin: 0 auto;
   text-align: center;
   padding: 6rpx 0rpx;
+  height: 19vh;
+ 
+}
+.elemeimage image{
+  /* height: 129px; */
+  height: 19vh;
 
 }
 

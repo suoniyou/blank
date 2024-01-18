@@ -13,7 +13,10 @@
     "pages/goToPay/goToPay",
     "pages/paySucess/paySucess",
     "pages/selfproduct/selfproduct",
-    "pages/pageShare/pageShare"
+    "pages/pageShare/pageShare",
+    "pages/welfareCenter/welfareCenter",
+    "pages/position/index",
+    "pages/positioncopy/index"
   ],
   "window": {
     "defaultTitle": "福利鸭"
@@ -40,7 +43,7 @@
       },
       {
         "pagePath": "pages/pageShare/pageShare",
-        "name": "分享赚",
+        "name": "支心客",
         "icon": "images/share.png",
         "activeIcon": "images/activeshare.png"
       },

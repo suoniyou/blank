@@ -36,9 +36,9 @@
           <button
           type="primary"
            class="zimaisheng"
-          loading={{selfLoading}}
+           loading={{item.selfLoading}}
         >
-        <text a:if="{{ selfLoading ? false:true }}">自买省 ¥{{item.pre_fee}}</text>    
+        <text>自买省 ¥{{item.pre_fee}}</text>    
         </button>
          
         </view>
@@ -112,7 +112,10 @@
       <view class="sharetext">
         <text>分享文案</text>
         <view class="wenan">
-          {{shareText}}
+          <!-- <view onLongTap='onLongTapTest'> -->
+            <text selectable="true" style="font-size: 24rpx;">{{shareText}}</text>
+          
+        <!-- </view> -->
           <view class="copybtnview">
             <view>
             </view>
@@ -144,7 +147,11 @@
     </view>
   </popup>
   <popup show={{ showpopopImg }} onclose={{ oncloseImg }} position="bottom">
+   
     <view class="saveimage-bg">
+      <view onTap="oncloseImg" class="closebtn2">
+        <icon type="clear" size="25" class="onclose" color="#fff" style="color:#fff"/>
+      </view>
       <image mode="widthFix" src="{{popupPic}}"  lazy-load="{{true}}" style="width:100%" />
       <!--<canvas id="canvas" type="2d" onReady="onCanvasReady" width="1200" height="1700"> -->
       <!--</canvas> -->

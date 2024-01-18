@@ -1,0 +1,6 @@
+.images {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 20rpx;
+  text-align: center;
+}

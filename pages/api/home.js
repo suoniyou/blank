@@ -67,3 +67,11 @@ export const getAdvertisement = (data) => {
   })
 }
 
+export const getIdDetail = (data) => {
+  return request({
+      url: '/home/position/detail',
+      method: 'get',
+      data
+  })
+}
+

@@ -53,8 +53,7 @@ Component({
         }
 
         if (res.code == 102) {
-      
-          var res = my.getStorageSync({
+         var res = my.getStorageSync({
             key: "token"
           })
           my.ap.openURL({

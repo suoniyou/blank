@@ -1,0 +1,3 @@
+<view a:for="{{ ImageArr }}" onTap="goLink" data-link={{ item.link }} class="images">
+  <image mode="widthFix" src="{{item.img}}" style="width:94%"/>
+</view>
